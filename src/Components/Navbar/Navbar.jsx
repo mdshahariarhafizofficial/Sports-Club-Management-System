@@ -8,7 +8,7 @@ import { MdLogout, MdOutlineDashboard } from "react-icons/md";
 import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
-  const user = false;
+  const user = true;
   const menu = (
     <>
       <li>
@@ -48,7 +48,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="max-w-[1280px] mx-auto navbar lg:px-0 py-4">
+    <nav className="md:max-w-[1500px] mx-auto navbar lg:px-0 py-4">
       <div className="navbar-start">
         <a href="/">
           <img className="w-40 md:w-50" src={logo} alt="logo" />
