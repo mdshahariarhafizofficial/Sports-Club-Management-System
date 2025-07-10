@@ -8,7 +8,7 @@ import { MdLogout, MdOutlineDashboard } from "react-icons/md";
 import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
-  const user = true;
+  const user = false;
   const menu = (
     <>
       <li>
@@ -17,7 +17,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive
               ? "text-primary border-b-2 rounded-none font-bold"
-              : "font-medium"
+              : "font-medium text-white hover:text-primary"
           }
         >
           Home
@@ -29,7 +29,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive
               ? "text-primary border-b-2 rounded-none font-bold"
-              : "font-medium hover:bg-white hover:text-primary"
+              : "font-medium text-white hover:text-primary"
           }
         >
           Courts
@@ -38,7 +38,7 @@ const Navbar = () => {
       {
         user ||
         <Link to="login" className="lg:hidden">
-            <button className="w-full btn btn-primary text-white text-base font-normal py-4 tracking-wider hover:bg-secondary hover:text-black">
+            <button className="w-full btn btn-primary text-black text-base font-normal py-4 tracking-wider hover:bg-secondary hover:text-black">
               <FaUserCircle size={20}></FaUserCircle>
               Login
             </button>
@@ -109,7 +109,7 @@ const Navbar = () => {
           </div>
         ) : (
           <Link to="login" className="hidden md:flex">
-            <button className="btn btn-primary text-white text-base font-normal py-6 px-6 tracking-wider hover:bg-secondary hover:text-black">
+            <button className="btn btn-primary text-black text-base font-normal py-6 px-6 tracking-wider hover:bg-secondary hover:text-black">
               <FaUserCircle size={30}></FaUserCircle>
               Login
             </button>
@@ -123,7 +123,7 @@ const Navbar = () => {
             {/* Page content here */}
             <label
               htmlFor="my-drawer"
-              className=" drawer-button btn bg-white border-0 shadow-none"
+              className=" drawer-button bg-black btn border-0 shadow-none"
             >
               <TiThMenu className="text-primary" size={30} />
             </label>
@@ -134,7 +134,7 @@ const Navbar = () => {
               aria-label="close sidebar"
               className="drawer-overlay"
             ></label>
-            <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4 space-y-4">
+            <ul className="menu bg-black text-base-content min-h-full w-80 p-4 space-y-4">
               {/* Sidebar content here */}
               {menu}
             </ul>
