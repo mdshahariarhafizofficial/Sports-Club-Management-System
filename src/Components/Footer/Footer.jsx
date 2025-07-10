@@ -8,10 +8,10 @@ const Footer = () => {
 
   return (
     <div className="bg-neutral text-white">
-      <div className="max-w-[1500px] mx-auto px-6 lg:px-0 py-16 grid grid-cols-1 md:grid-cols-4 lg:gap-25 gap-10">
+      <div className="max-w-[1500px] mx-auto px-6 lg:px-0 py-16 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10">
         {/* Brand Description & Social Media */}
         <aside className="space-y-5">
-          <img src={logo} className="w-36" alt="Sportiva Logo" />
+          <img src={logo} className="w-40" alt="Sportiva Logo" />
           <p className="text-sm leading-6 text-gray-300">
             <strong>Sportiva</strong> is a smart sports club management system
             built for modern clubs. Handle registrations, court bookings,
@@ -97,7 +97,21 @@ const Footer = () => {
             <li><a href="/cookie-policy" className="hover:text-primary transition">Cookie Policy</a></li>
           </ul>
         </div>
+
+            {/* Contact Info */}
+        <div>
+          <div>
+            <h2 className="text-primary text-xl font-semibold mb-4">Contact</h2>
+            <ul className="space-y-2 text-sm text-gray-300">
+              <li>Email: <a href="mailto:support@sportiva.com" className="hover:text-primary">support@sportiva.com</a></li>
+              <li>Phone: <a href="tel:+880123456789" className="hover:text-primary">+880 123 456 789</a></li>
+              <li>Address: Gulshan 1, Dhaka, Bangladesh</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
+      
 
       {/* Bottom Footer */}
       <div className="bg-black py-5">
