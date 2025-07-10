@@ -1,9 +1,10 @@
 import React from 'react';
-import { Outlet } from 'react-router';
+import { Outlet, useNavigation } from 'react-router';
 import Navbar from '../Components/Navbar/Navbar';
 import Footer from '../Components/Footer/Footer';
 
 const Root = () => {
+    const navigation = useNavigation();
     return (
         <>
         <header className='bg-black sticky top-0 z-50'>
@@ -11,7 +12,10 @@ const Root = () => {
         </header>
         <main>
             <div className='min-h-[calc(100vh-567.67px)]'>
-                <Outlet></Outlet>
+                {
+                    navigation.state == "loading"? <Loading></Loading> : 
+                    <Outlet></Outlet>
+                }
             </div>
         </main>
         <footer>
