@@ -2,7 +2,7 @@ import React from 'react';
 
 const Loader = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white dark:bg-neutral space-y-6">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-neutral space-y-6">
       <div className="relative w-16 h-16">
         {/* Spinning Ring */}
         <div className="absolute inset-0 rounded-full border-4 border-t-transparent border-primary animate-spin"></div>
