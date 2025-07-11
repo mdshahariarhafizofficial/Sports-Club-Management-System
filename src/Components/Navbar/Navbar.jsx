@@ -73,7 +73,7 @@ const Navbar = () => {
                 role="button"
                 className="avatar"
               >
-                <div className="ring-primary ring-offset-base-100 w-12 rounded-full ring-2 ring-offset-2">
+                <div className="ring-primary ring-offset-black w-12 rounded-full ring-2 ring-offset-2">
                   <img
                     className="cursor-pointer"
                     src={user?.photoURL ? user?.photoURL : "https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"}
@@ -86,11 +86,11 @@ const Navbar = () => {
                 tabIndex={0}
                 className="mt-3 z-[1] p-3 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 space-y-3"
               >
-                <li>
-                  <span className="font-semibold text-secondary">
+                <div className="cursor-default">
+                  <span className="font-semibold text-black flex items-center gap-1">
                     <FaRegUserCircle className="text-primary" size={30} /> {user? user?.displayName : 'user name'}
                   </span>
-                </li>
+                </div>
                 <li>
                   <Link to="/dashboard">
                     <MdOutlineDashboard size={20} /> Dashboard
