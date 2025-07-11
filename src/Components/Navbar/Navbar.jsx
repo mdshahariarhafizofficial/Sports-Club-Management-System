@@ -6,9 +6,10 @@ import logo from "../../assets/Logo.png";
 import { TbLogout } from "react-icons/tb";
 import { MdLogout, MdOutlineDashboard } from "react-icons/md";
 import { Tooltip } from "react-tooltip";
+import useAuth from "../../Hooks/useAuth";
 
 const Navbar = () => {
-  const user = true;
+  const {handleSingOut, user} = useAuth();
   const menu = (
     <>
       <li>
@@ -25,7 +26,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/fridge"
+          to="/courts"
           className={({ isActive }) =>
             isActive
               ? "text-primary border-b-2 rounded-none font-bold"
@@ -36,7 +37,7 @@ const Navbar = () => {
         </NavLink>
       </li>
       {
-        user ||
+        !user &&
         <Link to="login" className="lg:hidden">
             <button className="w-full btn btn-primary text-black text-base font-normal py-4 tracking-wider hover:bg-secondary hover:text-black">
               <FaUserCircle size={20}></FaUserCircle>
@@ -51,7 +52,7 @@ const Navbar = () => {
     <nav className="md:max-w-[1500px] mx-auto navbar lg:px-0 py-4">
       <div className="navbar-start">
         <a href="/">
-          <img className="w-40 md:w-50" src={logo} alt="logo" />
+          <img className="w-40" src={logo} alt="logo" />
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -61,7 +62,7 @@ const Navbar = () => {
         <Tooltip id='my-tooltip'></Tooltip>
         {user ? (
           <div className="flex items-center gap-4">
-            <h2 className="hidden md:block">{user?.email}</h2>
+            <h2 className="hidden md:block text-gray-300">{user?.email}</h2>
             {/* Profile Dropdown with Dashboard Link */}
             <div className="dropdown dropdown-end">
               <div
@@ -75,7 +76,7 @@ const Navbar = () => {
                 <div className="ring-primary ring-offset-base-100 w-12 rounded-full ring-2 ring-offset-2">
                   <img
                     className="cursor-pointer"
-                    src={user?.photoURL || "https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"}
+                    src={user?.photoURL ? user?.photoURL : "https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"}
                     referrerPolicy="no-referrer"
                     alt="user"
                   />
@@ -98,7 +99,7 @@ const Navbar = () => {
                 <li>
                   <button
                     onClick={() => handleSingOut()}
-                    className="btn btn-sm bg-red-500 text-white py-3 mt-1"
+                    className="btn btn-sm bg-primary text-black py-3 mt-1"
                   >
                     <MdLogout size={22}></MdLogout>
                     Log Out
@@ -137,6 +138,15 @@ const Navbar = () => {
             <ul className="menu bg-black text-base-content min-h-full w-80 p-4 space-y-4">
               {/* Sidebar content here */}
               {menu}
+                <li>
+                  <button
+                    onClick={() => handleSingOut()}
+                    className="btn btn-sm bg-primary text text-black py-5 mt-1"
+                  >
+                    <MdLogout size={22}></MdLogout>
+                    Log Out
+                  </button>
+                </li>              
             </ul>
           </div>
         </div>

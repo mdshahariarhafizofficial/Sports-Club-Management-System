@@ -16,7 +16,7 @@ const AuthProvider = ({children}) => {
     }
 
     // Sing in with Google
-    const googleSingIn = () => {
+    const googleSignIn = () => {
         return signInWithPopup(auth, googleProvider)
     }
 
@@ -25,6 +25,7 @@ const AuthProvider = ({children}) => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
             setLoading(false);
+            console.log(currentUser);
             
         });
         return () => {
@@ -57,7 +58,7 @@ const AuthProvider = ({children}) => {
 
     const userInfo = {
         createUser,
-        googleSingIn,
+        googleSignIn,
         updateUser,
         logInUser,
         user,

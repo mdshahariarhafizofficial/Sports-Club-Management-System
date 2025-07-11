@@ -11,7 +11,7 @@ const Root = () => {
             <Navbar></Navbar>
         </header>
         <main>
-            <div className='min-h-[calc(100vh-567.67px)]'>
+            <div className='min-h-[calc(100vh-589.36px)]'>
                 {
                     navigation.state == "loading"? <Loading></Loading> : 
                     <Outlet></Outlet>

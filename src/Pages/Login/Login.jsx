@@ -7,14 +7,14 @@ import toast from "react-hot-toast";
 // import useAxios from "../../Hooks/useAxios";
 
 const Login = () => {
-  const {loginUser, setUser, googleSignIn} = useAuth();
+  const {logInUser, setUser, googleSignIn} = useAuth();
   const { register, handleSubmit, formState: {errors}, } = useForm();
   const navigate = useNavigate();
   const location = useLocation();
 //   const axiosUrl = useAxios();
   // Login
   const onSubmit = (data) => {
-    loginUser(data.email, data.password)
+    logInUser(data.email, data.password)
     .then(result => {
       const user = result.user;
       setUser(user)
@@ -34,11 +34,11 @@ const Login = () => {
       .then( async(result) => {
         if (result.user) {
           // Send user to DB
-          const userInfo = {
-            email: result.user.email,
-            role: 'user',
-            created_at: new Date().toISOString(),
-          };
+          // const userInfo = {
+          //   email: result.user.email,
+          //   role: 'user',
+          //   created_at: new Date().toISOString(),
+          // };
 
         //   const res = await axiosUrl.post('/users', userInfo);
         //   console.log('From Google SignIN --- ', res.data);

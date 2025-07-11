@@ -6,11 +6,11 @@ import { Link, useLocation, useNavigate } from "react-router";
 import styled from "styled-components";
 import useAuth from '../../Hooks/useAuth';
 import toast from 'react-hot-toast';
-// import axios from 'axios';
+import axios from 'axios';
 // import useAxios from '../../Hooks/useAxios';
 
 const Register = () => {
-    const {createUser, googleSignIn, setUser, updateUserProfile} = useAuth();
+    const {createUser, googleSignIn, setUser, updateUser} = useAuth();
     const [profilePic, setProfilePic] = useState('');
     // const axiosUrl = useAxios();
 
@@ -22,14 +22,15 @@ const Register = () => {
       console.log(data);
       createUser(data.email, data.password)
       .then( async(result) => {
-        if (result.user) {
+        const user = result.user;
+        if (user) {
 
           // Send user to DB
-          const userInfo = {
-            email: data.email,
-            role: 'user',
-            created_at: new Date().toISOString(),
-          };
+          // const userInfo = {
+          //   email: data.email,
+          //   role: 'user',
+          //   created_at: new Date().toISOString(),
+          // };
 
         //   const res = await axiosUrl.post('/users', userInfo);
         //   console.log('From Post User --- ', res.data);
@@ -40,8 +41,9 @@ const Register = () => {
             displayName: data.name,
             photoURL: profilePic,
           }
-          updateUserProfile(userProfile)
+          updateUser(userProfile)
           .then(() => {
+            setUser({...user, userProfile});
             navigate(`${location.state ? location.state : '/' }`)          
             toast.success('Account Created SuccessFul!')             
           })
@@ -64,11 +66,11 @@ const Register = () => {
       .then( async(result) => {
         if (result.user) {
           // Send user to DB
-          const userInfo = {
-            email: result.user.email,
-            role: 'user',
-            created_at: new Date().toISOString(),
-          };
+          // const userInfo = {
+          //   email: result.user.email,
+          //   role: 'user',
+          //   created_at: new Date().toISOString(),
+          // };
 
         //   const res = await axiosUrl.post('/users', userInfo);
         //   console.log('From Google SignIN --- ', res.data);
@@ -91,9 +93,10 @@ const Register = () => {
       const formData = new FormData();
       formData.append('image', image);
 
-    //   const res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_Image_Upload_Key}`, formData) 
+      const res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_Image_Upload_Key}`, formData) 
       
-    //   setProfilePic(res.data?.data.url);
+      setProfilePic(res.data?.data.url);
+      console.log(res.data?.data.url);
     }
 
     return (
