@@ -5,6 +5,7 @@ import Loader from "../Pages/Loading/Loader";
 import Login from "../Pages/Login/Login";
 import AuthLayout from "../Layouts/AuthLayout";
 import Register from "../Pages/Register/Register";
+import DashboardLayout from "../Layouts/DashboardLayout";
 
 const router = createBrowserRouter([
 
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path: 'dashboard',
+        Component: DashboardLayout,
+    }
 
 ]);
 
