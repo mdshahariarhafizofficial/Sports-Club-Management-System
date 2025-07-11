@@ -4,14 +4,14 @@ import { Link, useLocation, useNavigate } from "react-router";
 import styled from "styled-components";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
-// import useAxios from "../../Hooks/useAxios";
+import useAxios from "../../Hooks/useAxios";
 
 const Login = () => {
   const {logInUser, setUser, googleSignIn} = useAuth();
   const { register, handleSubmit, formState: {errors}, } = useForm();
   const navigate = useNavigate();
   const location = useLocation();
-//   const axiosUrl = useAxios();
+  const axiosUrl = useAxios();
   // Login
   const onSubmit = (data) => {
     logInUser(data.email, data.password)
@@ -34,15 +34,17 @@ const Login = () => {
       .then( async(result) => {
         if (result.user) {
           // Send user to DB
-          // const userInfo = {
-          //   email: result.user.email,
-          //   role: 'user',
-          //   created_at: new Date().toISOString(),
-          // };
+          const userInfo = {
+            name: result?.user?.displayName,
+            email: result?.user?.email,
+            image: result?.user?.photoURL,
+            role: "user",
+            createdAt: new Date().toISOString(),
+            memberSince: null,
+          };          
 
-        //   const res = await axiosUrl.post('/users', userInfo);
-        //   console.log('From Google SignIN --- ', res.data);
-
+          const res = await axiosUrl.post('/users', userInfo);
+          console.log('From Google SignIN --- ', res.data);
           setUser(result.user)
           navigate(`${location.state ? location.state : '/' }`)
          toast.success('Google Sing In SuccessFul!') 

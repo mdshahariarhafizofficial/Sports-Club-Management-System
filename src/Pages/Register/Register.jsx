@@ -7,12 +7,12 @@ import styled from "styled-components";
 import useAuth from '../../Hooks/useAuth';
 import toast from 'react-hot-toast';
 import axios from 'axios';
-// import useAxios from '../../Hooks/useAxios';
+import useAxios from '../../Hooks/useAxios';
 
 const Register = () => {
     const {createUser, googleSignIn, setUser, updateUser} = useAuth();
     const [profilePic, setProfilePic] = useState('');
-    // const axiosUrl = useAxios();
+    const axiosUrl = useAxios();
 
     const { register, handleSubmit, formState: { errors } } = useForm(); 
       const navigate = useNavigate();
@@ -26,14 +26,18 @@ const Register = () => {
         if (user) {
 
           // Send user to DB
-          // const userInfo = {
-          //   email: data.email,
-          //   role: 'user',
-          //   created_at: new Date().toISOString(),
-          // };
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+            image: profilePic,
+            role: "user",
+            createdAt: new Date().toISOString(),
+            memberSince: null,
+          };
+          
 
-        //   const res = await axiosUrl.post('/users', userInfo);
-        //   console.log('From Post User --- ', res.data);
+          const res = await axiosUrl.post('/users', userInfo);
+          console.log('From Post User --- ', res.data);
           
 
           // Update Profile
@@ -66,14 +70,17 @@ const Register = () => {
       .then( async(result) => {
         if (result.user) {
           // Send user to DB
-          // const userInfo = {
-          //   email: result.user.email,
-          //   role: 'user',
-          //   created_at: new Date().toISOString(),
-          // };
+          const userInfo = {
+            name: result?.user?.displayName,
+            email: result?.user?.email,
+            image: result?.user?.photoURL,
+            role: "user",
+            createdAt: new Date().toISOString(),
+            memberSince: null,
+          };          
 
-        //   const res = await axiosUrl.post('/users', userInfo);
-        //   console.log('From Google SignIN --- ', res.data);
+          const res = await axiosUrl.post('/users', userInfo);
+          console.log('From Google SignIN --- ', res.data);
 
           setUser(result.user)
           navigate(`${location.state ? location.state : '/' }`)
