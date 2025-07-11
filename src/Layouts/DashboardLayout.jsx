@@ -1,9 +1,30 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router";
 import logo from '../assets/logo.png';
-import { FaTachometerAlt, FaBox, FaMoneyCheckAlt, FaMapMarkedAlt, FaUserEdit, FaUserClock } from "react-icons/fa";
-import { HiBadgeCheck } from "react-icons/hi";
-import { RiUserAddFill } from "react-icons/ri";
+import {
+  MdPendingActions,
+  MdOutlinePayment,
+  MdCampaign,
+  MdOutlineAssignmentTurnedIn
+} from "react-icons/md";
+import {
+  HiOutlineUserCircle,
+  HiOutlineUserGroup
+} from "react-icons/hi2";
+import {
+  FaClipboardCheck,
+  FaUserShield,
+  FaUsers,
+  FaTicketAlt
+} from "react-icons/fa";
+import { GiTennisCourt } from "react-icons/gi";
+import {
+  BsFillCalendarCheckFill,
+  BsCheck2Circle
+} from "react-icons/bs";
+import { BiNews } from "react-icons/bi";
+
+
 
 const DashboardLayout = () => {
 
@@ -50,6 +71,7 @@ const DashboardLayout = () => {
               <img src={logo} className="w-40 mb-5" alt="" />
             </a>            
             {/* Sidebar content here */}
+<>
   <li className="mr-4">
     <NavLink
       to="/dashboard"
@@ -58,93 +80,167 @@ const DashboardLayout = () => {
         isActive ? "font-bold bg-primary" : "text-secondary font-medium"
       }
     >
-      <FaTachometerAlt className="inline-block mr-2 text-lg" />
-      Overview
+      <HiOutlineUserCircle className="inline-block mr-2 text-lg" />
+      My Profile
     </NavLink>
   </li>
-      <li className="mr-4">
-        <NavLink
-          to="/dashboard/my-parcels"
-          className={({ isActive }) =>
-            isActive ? "font-bold bg-primary" : "text-secondary font-medium"
-          }
-        >
-          <FaBox className="inline-block mr-2 text-lg" />
-          My Parcels
-        </NavLink>
-      </li>
-
-      <li className="mr-4">
-        <NavLink
-          to="/dashboard/payment-history"
-          className={({ isActive }) =>
-            isActive ? "font-bold bg-primary" : "text-secondary font-medium"
-          }
-        >
-          <FaMoneyCheckAlt className="inline-block mr-2 text-lg" />
-          Payment History
-        </NavLink>
-      </li>
-
-      <li className="mr-4">
-        <NavLink
-          to="/dashboard/track-package"
-          className={({ isActive }) =>
-            isActive ? "font-bold bg-primary" : "text-secondary font-medium"
-          }
-        >
-          <FaMapMarkedAlt className="inline-block mr-2 text-lg" />
-          Track Package
-        </NavLink>
-      </li>
-
 
   <li className="mr-4">
     <NavLink
-      to="/dashboard/update-profile"
+      to="/dashboard/pending-bookings"
       className={({ isActive }) =>
         isActive ? "font-bold bg-primary" : "text-secondary font-medium"
       }
     >
-      <FaUserEdit className="inline-block mr-2 text-lg" />
-      Update Profile
+      <MdPendingActions className="inline-block mr-2 text-lg" />
+      Pending Bookings
     </NavLink>
   </li>
 
-    <li className="mr-4">
-      <NavLink
-        to="/dashboard/pending-riders"
-        className={({ isActive }) =>
-          isActive ? "font-bold bg-primary" : "text-secondary font-medium"
-        }
-      >
-        <FaUserClock className="inline-block mr-2 text-lg" />
-        Pending Riders
-      </NavLink>
-    </li>
-    <li className="mr-4">
-      <NavLink
-        to="/dashboard/active-riders"
-        className={({ isActive }) =>
-          isActive ? "font-bold bg-primary" : "text-secondary font-medium"
-        }
-      >
-        <HiBadgeCheck className="inline-block mr-2 text-xl" />
-        Active Riders
-      </NavLink>
-    </li>
+  <li className="mr-4">
+    <NavLink
+      to="/dashboard/approved-bookings"
+      className={({ isActive }) =>
+        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
+      }
+    >
+      <BsCheck2Circle className="inline-block mr-2 text-lg" />
+      Approved Bookings
+    </NavLink>
+  </li>
 
-    <li className="mr-4">
-      <NavLink
-        to="/dashboard/make-admin"
-        className={({ isActive }) =>
-          isActive ? "font-bold bg-primary" : "text-secondary font-medium"
-        }
-      >
-        <RiUserAddFill className="inline-block mr-2 text-xl" />
-        MakeAdmin
-      </NavLink>
-    </li>
+  <li className="mr-4">
+    <NavLink
+      to="/dashboard/confirmed-bookings"
+      className={({ isActive }) =>
+        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
+      }
+    >
+      <FaClipboardCheck className="inline-block mr-2 text-lg" />
+      Confirmed Bookings
+    </NavLink>
+  </li>
+
+  <li className="mr-4">
+    <NavLink
+      to="/dashboard/payment-history"
+      className={({ isActive }) =>
+        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
+      }
+    >
+      <MdOutlinePayment className="inline-block mr-2 text-lg" />
+      Payment History
+    </NavLink>
+  </li>
+
+  <li className="mr-4">
+    <NavLink
+      to="/dashboard/admin-profile"
+      className={({ isActive }) =>
+        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
+      }
+    >
+      <FaUserShield className="inline-block mr-2 text-lg" />
+      Admin Profile
+    </NavLink>
+  </li>
+
+  <li className="mr-4">
+    <NavLink
+      to="/dashboard/manage-bookings-approval"
+      className={({ isActive }) =>
+        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
+      }
+    >
+      <MdOutlineAssignmentTurnedIn className="inline-block mr-2 text-xl" />
+      Manage Bookings Approval
+    </NavLink>
+  </li>
+
+  <li className="mr-4">
+    <NavLink
+      to="/dashboard/manage-members"
+      className={({ isActive }) =>
+        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
+      }
+    >
+      <HiOutlineUserGroup className="inline-block mr-2 text-xl" />
+      Manage Members
+    </NavLink>
+  </li>
+
+  <li className="mr-4">
+    <NavLink
+      to="/dashboard/all-users"
+      className={({ isActive }) =>
+        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
+      }
+    >
+      <FaUsers className="inline-block mr-2 text-xl" />
+      All Users
+    </NavLink>
+  </li>
+
+  <li className="mr-4">
+    <NavLink
+      to="/dashboard/manage-courts"
+      className={({ isActive }) =>
+        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
+      }
+    >
+      <GiTennisCourt className="inline-block mr-2 text-xl" />
+      Manage Courts
+    </NavLink>
+  </li>
+
+  <li className="mr-4">
+    <NavLink
+      to="/dashboard/manage-bookings"
+      className={({ isActive }) =>
+        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
+      }
+    >
+      <BsFillCalendarCheckFill className="inline-block mr-2 text-xl" />
+      Manage Bookings
+    </NavLink>
+  </li>
+
+  <li className="mr-4">
+    <NavLink
+      to="/dashboard/manage-coupons"
+      className={({ isActive }) =>
+        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
+      }
+    >
+      <FaTicketAlt className="inline-block mr-2 text-xl" />
+      Manage Coupons
+    </NavLink>
+  </li>
+
+  <li className="mr-4">
+    <NavLink
+      to="/dashboard/make-announcement"
+      className={({ isActive }) =>
+        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
+      }
+    >
+      <MdCampaign className="inline-block mr-2 text-xl" />
+      Make Announcement
+    </NavLink>
+  </li>
+
+  <li className="mr-4">
+    <NavLink
+      to="/dashboard/announcements"
+      className={({ isActive }) =>
+        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
+      }
+    >
+      <BiNews className="inline-block mr-2 text-xl" />
+      Announcements
+    </NavLink>
+  </li>
+</>
 
           </ul>
 
