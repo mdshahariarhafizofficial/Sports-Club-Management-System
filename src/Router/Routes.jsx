@@ -7,6 +7,7 @@ import Register from "../Pages/Register/Register";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
 import PendingBookings from "../Pages/Dashboard/PendingBookings/PendingBookings";
+import CourtsPage from "../Pages/CourtsPage/CourtsPage";
 
 const router = createBrowserRouter([
 
@@ -19,8 +20,13 @@ const router = createBrowserRouter([
                 index: true,
                 Component: Home,
             },
+            {
+              path: 'courts',
+              Component: CourtsPage,
+            }
         ]
     },
+    // Auth Routes
     {
         path: '/',
         Component: AuthLayout,
@@ -35,6 +41,7 @@ const router = createBrowserRouter([
             }
         ]
     },
+    // Dashboard Routes
 {
   path: 'dashboard',
   Component: DashboardLayout,

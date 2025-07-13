@@ -1,9 +1,9 @@
-import React from 'react';
-import logo from '../../assets/Logo.png'; // update with your logo path
+import React from "react";
+import logo from "../../assets/Logo.png"; // update with your logo path
 
 const Loader = () => {
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white/90 dark:bg-black/90 backdrop-blur-md space-y-6">
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/90 backdrop-blur-md space-y-6">
       <img src={logo} alt="Sportiva Logo" className="h-16 animate-bounce" />
       <div className="relative w-16 h-16">
         <div className="absolute inset-0 rounded-full border-4 border-t-transparent border-primary animate-spin"></div>
