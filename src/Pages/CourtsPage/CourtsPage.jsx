@@ -70,22 +70,22 @@ const CourtsPage = () => {
 
       {/* Filter / Sort Area (Optional) */}
       <div className="flex flex-wrap gap-4 justify-center mb-10">
-        <select className="select select-bordered max-w-xs">
-          <option disabled selected>Filter by Type</option>
-          <option>Tennis</option>
-          <option>Badminton</option>
-          <option>Squash</option>
+        <select className="select select-bordered max-w-xs" defaultValue="">
+          <option disabled value="">Filter by Type</option>
+          <option value="Tennis">Tennis</option>
+          <option value="Badminton">Badminton</option>
+          <option value="Squash">Squash</option>
         </select>
-        <select className="select select-bordered max-w-xs">
-          <option disabled selected>Filter by Slot</option>
-          <option>Morning</option>
-          <option>Afternoon</option>
-          <option>Evening</option>
+        <select className="select select-bordered max-w-xs" defaultValue="">
+          <option disabled value="">Filter by Slot</option>
+          <option value="Morning">Morning</option>
+          <option value="Afternoon">Afternoon</option>
+          <option value="Evening">Evening</option>
         </select>
-        <select className="select select-bordered max-w-xs">
-          <option disabled selected>Sort by Price</option>
-          <option>Low to High</option>
-          <option>High to Low</option>
+        <select className="select select-bordered max-w-xs" defaultValue="">
+          <option disabled value="">Sort by Price</option>
+          <option value="LowToHigh">Low to High</option>
+          <option value="HighToLow">High to Low</option>
         </select>
       </div>
 
