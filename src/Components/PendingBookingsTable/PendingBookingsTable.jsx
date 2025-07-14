@@ -1,8 +1,28 @@
 import React from 'react';
 import { FaClock, FaDollarSign, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 const PendingBookingsTable = ({ userBookings = [] }) => {
+    const axiosSecure = useAxiosSecure();
+    const QueryClient = useQueryClient();
+    // Mutation
+    const {mutate: cancelBooking, isPending} = useMutation({
+        mutationFn: async (id) => {
+            const res = await axiosSecure.delete(`/bookings/${id}`);
+            return res.data;
+        },
+        onSuccess: () => {
+             toast.success('Booking canceled!');
+             QueryClient.invalidateQueries(['myBookings']);
+        },
+        onError: () => {
+            toast.error('Failed to cancel booking');
+        },
+    });
+
 
   const handleCancelBooking = (bookingId) => {
     Swal.fire({
@@ -15,7 +35,7 @@ const PendingBookingsTable = ({ userBookings = [] }) => {
       confirmButtonText: '<span style="color:black">Yes, Cancel it!</span>',
     }).then((result) => {
       if (result.isConfirmed) {
-        // এখানে আপনি DELETE রিকোয়েস্ট করবেন API-তে
+        cancelBooking(bookingId);
         console.log('Cancel booking ID:', bookingId);
 
         Swal.fire({
@@ -89,9 +109,11 @@ const PendingBookingsTable = ({ userBookings = [] }) => {
                   <td className="px-4 py-3">
                     <button
                       onClick={() => handleCancelBooking(booking._id)}
+                      disabled={isPending}
                       className="btn btn-sm bg-red-600 hover:bg-red-700 text-white"
                     >
-                      <FaTrash className="mr-1" /> Cancel
+                      <FaTrash className="mr-1" /> 
+                      {isPending ? 'Canceling...' : 'Cancel'}
                     </button>
                   </td>
                 </tr>
