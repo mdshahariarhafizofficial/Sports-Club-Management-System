@@ -8,6 +8,7 @@ import DashboardLayout from "../Layouts/DashboardLayout";
 import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
 import PendingBookings from "../Pages/Dashboard/PendingBookings/PendingBookings";
 import CourtsPage from "../Pages/CourtsPage/CourtsPage";
+import ManageBookingsApproval from "../Pages/Dashboard/ManageBookingsApproval/ManageBookingsApproval";
 
 const router = createBrowserRouter([
 
@@ -70,10 +71,10 @@ const router = createBrowserRouter([
     //   path: 'admin-profile',
     //   Component: AdminProfile,
     // },
-    // {
-    //   path: 'manage-bookings-approval',
-    //   Component: ManageBookingsApproval,
-    // },
+    {
+      path: 'manage-bookings-approval',
+      Component: ManageBookingsApproval,
+    },
     // {
     //   path: 'manage-members',
     //   Component: ManageMembers,
