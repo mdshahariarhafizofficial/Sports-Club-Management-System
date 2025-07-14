@@ -84,6 +84,7 @@ const BookingModal = ({ court, closeModal }) => {
       userEmail: user.email,
       courtId: court._id,
       courtTitle: court.name,
+      location: court.location,
       courtType: court.type,
       date: data.selectedDate,
       slots: selectedSlots,
