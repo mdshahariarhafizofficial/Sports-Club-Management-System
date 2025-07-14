@@ -10,15 +10,21 @@ import {
   FaTableTennis
 } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
+import { useMutation } from '@tanstack/react-query';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import toast from 'react-hot-toast';
+import useAuth from '../../Hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const BookingModal = ({ court, closeModal }) => {
+  const {user} = useAuth();
+  const axiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  // এখানে useEffect দিয়ে ইনিশিয়াল সিলেকশন দিচ্ছি
   const [selectedSlots, setSelectedSlots] = useState([]);
 
   useEffect(() => {
@@ -37,17 +43,55 @@ const BookingModal = ({ court, closeModal }) => {
 
   const totalPrice = selectedSlots.length * court.pricePerSession;
 
+  // Use Mutation
+  const {mutate, isPending} = useMutation({
+    mutationFn: async(bookingInfo) => {
+      const res = await axiosSecure.post(`/bookings`, bookingInfo);
+      return res.data;
+    },
+    onSuccess: () => {
+        Swal.fire({
+    title: 'Booking Request Sent!',
+    text: 'Your booking request has been submitted for admin approval.',
+    icon: 'success',
+    confirmButtonColor: '#ffe733',
+    confirmButtonText: 'Okay',
+    background: '#1f1f1f',
+    color: '#ffffff',
+    timer: 1500,
+    customClass: {
+      popup: 'rounded-xl shadow-lg',
+    },
+    showClass: {
+      popup: 'animate__animated animate__fadeInDown',
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp',
+    },
+  });
+      closeModal();
+    },
+    onError: (error) => {
+      toast.error(`Booking Failed: ${error.message}`);
+    },
+  });
+
+
   const onSubmit = (data) => {
     if (selectedSlots.length === 0) return;
 
     const bookingInfo = {
-      court,
+      userEmail: user.email,
+      courtId: court._id,
+      courtTitle: court.name,
+      courtType: court.type,
       date: data.selectedDate,
-      selectedSlots,
-      totalPrice,
+      slots: selectedSlots,
+      price: totalPrice,
     };
 
     console.log(bookingInfo);
+    mutate(bookingInfo);
     closeModal();
   };
 
@@ -170,10 +214,10 @@ const BookingModal = ({ court, closeModal }) => {
 
           <button
             type="submit"
-            disabled={selectedSlots.length === 0}
+            disabled={ isPending || selectedSlots.length === 0}
             className="btn bg-primary text-black w-full"
           >
-            Confirm Booking
+            { isPending ? 'Booking...' : 'Confirm Booking' }
           </button>
         </form>
       </div>
