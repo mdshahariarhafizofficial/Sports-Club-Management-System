@@ -10,8 +10,8 @@ const ManageBookingsApprovalTable = ({ bookingRequests = [] }) => {
   const queryClient = useQueryClient();
 
   const { mutate: updateStatus, isPending } = useMutation({
-    mutationFn: async ({ id, status }) => {
-      const res = await axiosSecure.patch(`/bookings/${id}`, { status });
+    mutationFn: async ({ id, status, email }) => {
+      const res = await axiosSecure.patch(`/bookings/${id}`, { status, email });
       return res.data;
     },
     onSuccess: () => {
@@ -23,7 +23,7 @@ const ManageBookingsApprovalTable = ({ bookingRequests = [] }) => {
     }
   });
 
-  const handleAction = (id, status) => {
+  const handleAction = (id, status, email) => {
     Swal.fire({
       title: `Are you sure to ${status} this booking?`,
       icon: 'question',
@@ -33,7 +33,7 @@ const ManageBookingsApprovalTable = ({ bookingRequests = [] }) => {
       confirmButtonText: `<span style="color:black">Yes, ${status} it!</span>`,
     }).then((result) => {
       if (result.isConfirmed) {
-        updateStatus({ id, status });
+        updateStatus({ id, status, email});
       }
     });
   };
@@ -90,14 +90,14 @@ const ManageBookingsApprovalTable = ({ bookingRequests = [] }) => {
                   <td className="px-4 py-3 capitalize">{booking.status}</td>
                   <td className="px-4 py-3 space-x-2">
                     <button
-                      onClick={() => handleAction(booking._id, 'approved')}
+                      onClick={() => handleAction(booking._id, 'approved', booking.userEmail)}
                       className="btn btn-xs bg-green-600 hover:bg-green-700 text-white"
                       disabled={isPending}
                     >
                       <FaCheckCircle className="mr-1" /> Approve
                     </button>
                     <button
-                      onClick={() => handleAction(booking._id, 'rejected')}
+                      onClick={() => handleAction(booking._id, 'rejected', booking.userEmail)}
                       className="btn btn-xs bg-red-600 hover:bg-red-700 text-white"
                       disabled={isPending}
                     >
