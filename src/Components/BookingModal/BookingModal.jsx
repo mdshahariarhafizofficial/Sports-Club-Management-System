@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   FaCalendarAlt,
   FaTimes,
@@ -18,7 +18,16 @@ const BookingModal = ({ court, closeModal }) => {
     formState: { errors },
   } = useForm();
 
+  // এখানে useEffect দিয়ে ইনিশিয়াল সিলেকশন দিচ্ছি
   const [selectedSlots, setSelectedSlots] = useState([]);
+
+  useEffect(() => {
+    if (court.selectedSlots && Array.isArray(court.selectedSlots)) {
+      setSelectedSlots(court.selectedSlots);
+    } else {
+      setSelectedSlots([]);
+    }
+  }, [court]);
 
   const handleSlotToggle = (slot) => {
     setSelectedSlots((prev) =>

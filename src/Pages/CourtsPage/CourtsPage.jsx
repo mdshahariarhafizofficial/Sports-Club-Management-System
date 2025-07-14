@@ -3,59 +3,104 @@ import { FaTableTennis, FaMapMarkerAlt, FaClock, FaDollarSign, FaCalendarCheck }
 import { useNavigate } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
 import BookingModal from '../../Components/BookingModal/BookingModal'; 
+import toast from 'react-hot-toast';
+import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import Loader from '../Loading/Loader';
 
-const demoCourts = [
-  {
-    name: "Grand Tennis Court A",
-    type: "Tennis",
-    image: "https://i.postimg.cc/NGrFy3Jn/Grand-Tennis-Court-A.jpg",
-    pricePerSession: 1200,
-    slots: ["7:00 AM", "9:00 AM", "11:00 AM", "3:00 PM", "5:00 PM"],
-    location: "Sportiva Complex - Dhaka",
-    status: "available"
-  },
-  {
-    name: "Arena Badminton Hall",
-    type: "Badminton",
-    image: "https://i.postimg.cc/NFTjWX2t/Arena-Badminton-Hall.jpg",
-    pricePerSession: 800,
-    slots: ["8:00 AM", "10:00 AM", "1:00 PM", "4:00 PM", "6:00 PM"],
-    location: "Elite Club - Chattogram",
-    status: "available"
-  },
-  {
-    name: "Squash Pro Room 1",
-    type: "Squash",
-    image: "https://i.postimg.cc/9F5MyLsQ/Squash-Pro-Room-1.jpg",
-    pricePerSession: 1000,
-    slots: ["7:30 AM", "9:30 AM", "12:00 PM", "2:30 PM", "6:00 PM"],
-    location: "Fitness Plus - Sylhet",
-    status: "available"
-  },
-  {
-    name: "Power Squash Room 2",
-    type: "Squash",
-    image: "https://i.postimg.cc/Bnfq1tLL/Power-Squash-Room-2.jpg",
-    pricePerSession: 950,
-    slots: ["7:00 AM", "10:00 AM", "12:30 PM", "3:30 PM", "6:00 PM"],
-    location: "Pro Sports Arena - Barishal",
-    status: "available"
-  },
-];
+// const demoCourts = [
+//   {
+//     name: "Grand Tennis Court A",
+//     type: "Tennis",
+//     image: "https://i.postimg.cc/NGrFy3Jn/Grand-Tennis-Court-A.jpg",
+//     pricePerSession: 1200,
+//     slots: ["7:00 AM", "9:00 AM", "11:00 AM", "3:00 PM", "5:00 PM"],
+//     location: "Sportiva Complex - Dhaka",
+//     status: "available"
+//   },
+//   {
+//     name: "Arena Badminton Hall",
+//     type: "Badminton",
+//     image: "https://i.postimg.cc/NFTjWX2t/Arena-Badminton-Hall.jpg",
+//     pricePerSession: 800,
+//     slots: ["8:00 AM", "10:00 AM", "1:00 PM", "4:00 PM", "6:00 PM"],
+//     location: "Elite Club - Chattogram",
+//     status: "available"
+//   },
+//   {
+//     name: "Squash Pro Room 1",
+//     type: "Squash",
+//     image: "https://i.postimg.cc/9F5MyLsQ/Squash-Pro-Room-1.jpg",
+//     pricePerSession: 1000,
+//     slots: ["7:30 AM", "9:30 AM", "12:00 PM", "2:30 PM", "6:00 PM"],
+//     location: "Fitness Plus - Sylhet",
+//     status: "available"
+//   },
+//   {
+//     name: "Power Squash Room 2",
+//     type: "Squash",
+//     image: "https://i.postimg.cc/Bnfq1tLL/Power-Squash-Room-2.jpg",
+//     pricePerSession: 950,
+//     slots: ["7:00 AM", "10:00 AM", "12:30 PM", "3:30 PM", "6:00 PM"],
+//     location: "Pro Sports Arena - Barishal",
+//     status: "available"
+//   },
+// ];
 
 const CourtsPage = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
   const [selectedCourt, setSelectedCourt] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedSlots, setSelectedSlots] = useState({});
+
+  // Load Courts
+  const { data: courts = [], isPending, isLoading } = useQuery({
+    queryKey: ['courts'],
+    queryFn: async()=> {
+      const res = await axiosSecure.get('/courts');
+      return res.data;
+    }
+  });
+
+  if (isLoading || isPending) {
+    return <Loader></Loader>
+  }
+
+  // Slot select handle (multi-select)
+  const handleSlotChange = (courtName, slot) => {
+    setSelectedSlots(prev => {
+      const currentSlots = prev[courtName] || [];
+      if (currentSlots.includes(slot)) {
+        // remove
+        return {
+          ...prev,
+          [courtName]: currentSlots.filter(s => s !== slot)
+        };
+      } else {
+        // add
+        return {
+          ...prev,
+          [courtName]: [...currentSlots, slot]
+        };
+      }
+    });
+  };
 
   const handleBooking = (court) => {
     if (!user) {
       navigate('/login');
-    } else {
-      setSelectedCourt(court);
-      setIsModalOpen(true);
+      return;
     }
+    if (!selectedSlots[court.name] || selectedSlots[court.name].length === 0) {
+      toast('Please select at least one slot.', {
+        icon: '⚠️',
+      });
+      return;
+    }
+    setSelectedCourt({ ...court, selectedSlots: selectedSlots[court.name] });
+    setIsModalOpen(true);
   };
 
   return (
@@ -90,10 +135,10 @@ const CourtsPage = () => {
       </div>
 
       {/* Court Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8">
-        {demoCourts.map((court, index) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-8">
+        {courts.map((court, index) => (
           <div key={index} className="bg-black rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-            <div className="overflow-hidden h-48">
+            <div className="overflow-hidden h-56">
               <img
                 src={court.image}
                 alt={court.name}
@@ -109,9 +154,29 @@ const CourtsPage = () => {
               <p className="flex items-center gap-2 text-gray-300">
                 <FaMapMarkerAlt /> {court.location}
               </p>
-              <p className="flex items-center gap-2 text-gray-300">
-                <FaClock /> {court.slots.length} Slots
-              </p>
+              
+              {/* Slot time dropdown (multi-select) */}
+              <div className="text-gray-300 font-medium">
+                <label>Available Slots: </label>
+                <div className="flex flex-wrap gap-2 mt-1">
+                  {court.slots.map((slot, i) => {
+                    const isSelected = selectedSlots[court.name]?.includes(slot);
+                    return (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => handleSlotChange(court.name, slot)}
+                        className={`px-3 py-1 rounded-full border ${
+                          isSelected ? 'bg-primary text-black border-primary' : 'border-gray-600 text-gray-400 hover:bg-gray-700 hover:text-white'
+                        } transition-colors duration-200`}
+                      >
+                        {slot}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
               <p className="flex items-center gap-2 text-gray-300">
                 <FaDollarSign /> ৳{court.pricePerSession} / session
               </p>
