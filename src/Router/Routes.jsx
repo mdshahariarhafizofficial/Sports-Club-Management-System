@@ -9,6 +9,7 @@ import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
 import PendingBookings from "../Pages/Dashboard/PendingBookings/PendingBookings";
 import CourtsPage from "../Pages/CourtsPage/CourtsPage";
 import ManageBookingsApproval from "../Pages/Dashboard/ManageBookingsApproval/ManageBookingsApproval";
+import ApprovedBookings from "../Pages/Dashboard/ApprovedBookings/ApprovedBookings";
 
 const router = createBrowserRouter([
 
@@ -55,10 +56,10 @@ const router = createBrowserRouter([
       path: 'pending-bookings',
       Component: PendingBookings,
     },
-    // {
-    //   path: 'approved-bookings',
-    //   Component: ApprovedBookings,
-    // },
+    {
+      path: 'approved-bookings',
+      Component: ApprovedBookings,
+    },
     // {
     //   path: 'confirmed-bookings',
     //   Component: ConfirmedBookings,
