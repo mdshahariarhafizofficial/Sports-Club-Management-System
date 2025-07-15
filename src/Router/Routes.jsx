@@ -13,6 +13,7 @@ import ApprovedBookings from "../Pages/Dashboard/ApprovedBookings/ApprovedBookin
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import ManageCoupons from "../Pages/Dashboard/ManageCoupons/ManageCoupons";
 import ConfirmedBookings from "../Pages/Dashboard/ConfirmedBookings/ConfirmedBookings";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 
 const router = createBrowserRouter([
 
@@ -67,11 +68,10 @@ const router = createBrowserRouter([
       path: 'confirmed-bookings',
       Component: ConfirmedBookings,
     },
-    // {
-    //   path: 'payment-history',
-    //   Component: PaymentHistory,
-    // },
-    // },
+    {
+      path: 'payment-history',
+      Component: PaymentHistory,
+    },
     {
       path: 'payment/:id',
       Component: Payment,

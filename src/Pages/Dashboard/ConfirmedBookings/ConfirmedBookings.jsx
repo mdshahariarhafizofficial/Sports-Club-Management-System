@@ -14,7 +14,7 @@ import Loader from '../../Loading/Loader';
 
 const ConfirmedBookings = () => {
   const axiosSecure = useAxiosSecure();
-  const {user, loading} = useAuth();  
+  const {user} = useAuth();  
   const {
     data: bookings = [],
     isLoading,
