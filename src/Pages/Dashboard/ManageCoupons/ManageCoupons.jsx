@@ -4,6 +4,7 @@ import { FaTrash, FaEdit, FaPlus } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import Loader from '../../Loading/Loader';
 
 const ManageCoupons = () => {
   const axiosSecure = useAxiosSecure();
@@ -76,6 +77,9 @@ const ManageCoupons = () => {
       }
     });
   };
+  if (isLoading) {
+    return <Loader></Loader>
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -94,7 +98,17 @@ const ManageCoupons = () => {
       <h2 className="text-3xl font-bold text-primary mb-8 text-center">🎁 Manage Coupons</h2>
       <div className="grid grid-cols-1 lg:grid-cols-[400px_1fr] gap-10 items-start">
         <div className="bg-gray-900 p-6 rounded-lg">
-          <h3 className="text-xl font-semibold text-primary mb-6">➕ Add Coupon</h3>
+          <h3 className="text-xl font-semibold text-primary mb-6 flex items-center gap-2">
+            {
+                editingCoupon ? <FaEdit /> :
+                <FaPlus className="ml-2" />
+              }
+            {
+                editingCoupon ? "Update Coupon" :
+                "Add Coupon" 
+            }
+            
+            </h3>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
@@ -135,7 +149,11 @@ const ManageCoupons = () => {
               />
             </div>
             <button type="submit" className="btn bg-primary text-black w-full">
-              {editingCoupon ? 'Update Coupon' : 'Add Coupon'} <FaPlus className="ml-2" />
+              {editingCoupon ? 'Update Coupon' : 'Add Coupon'} 
+              {
+                editingCoupon ? <FaEdit /> :
+                <FaPlus className="ml-2" />
+              }
             </button>
           </form>
         </div>
@@ -154,7 +172,7 @@ const ManageCoupons = () => {
             </thead>
             <tbody>
               {coupons.map((coupon, index) => (
-                <tr key={coupon._id} className="hover:bg-gray-800">
+                <tr key={coupon._id} className="hover:bg-gray-800 even:text-black hover:text-primary">
                   <td>{index + 1}</td>
                   <td>{coupon.code}</td>
                   <td>{coupon.discountAmount}</td>
