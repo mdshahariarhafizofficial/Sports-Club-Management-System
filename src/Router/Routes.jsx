@@ -12,6 +12,7 @@ import ManageBookingsApproval from "../Pages/Dashboard/ManageBookingsApproval/Ma
 import ApprovedBookings from "../Pages/Dashboard/ApprovedBookings/ApprovedBookings";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import ManageCoupons from "../Pages/Dashboard/ManageCoupons/ManageCoupons";
+import ConfirmedBookings from "../Pages/Dashboard/ConfirmedBookings/ConfirmedBookings";
 
 const router = createBrowserRouter([
 
@@ -62,10 +63,10 @@ const router = createBrowserRouter([
       path: 'approved-bookings',
       Component: ApprovedBookings,
     },
-    // {
-    //   path: 'confirmed-bookings',
-    //   Component: ConfirmedBookings,
-    // },
+    {
+      path: 'confirmed-bookings',
+      Component: ConfirmedBookings,
+    },
     // {
     //   path: 'payment-history',
     //   Component: PaymentHistory,

@@ -4,6 +4,7 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
 import { FaTag, FaEnvelope, FaCalendarAlt, FaClock, FaMoneyBill } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const CheckoutForm = () => {
   const { id } = useParams();
@@ -83,7 +84,13 @@ const CheckoutForm = () => {
 
         await axiosSecure.post('/payments', paymentInfo);
 
-        toast.success('Payment Successful!');
+          await Swal.fire({
+            icon: 'success',
+            title: 'Payment Successful!',
+            text: 'Your booking is now confirmed.',
+            confirmButtonColor: '#22c55e',
+            timer: 1500,
+          });
         navigate('/dashboard/confirmed-bookings');
       }
     } catch (err) {
