@@ -99,7 +99,12 @@ const CheckoutForm = () => {
 
   return (
     <div className="max-w-xl mx-auto bg-black p-8 rounded-lg shadow-lg mt-10">
-      <h2 className="text-3xl font-bold text-primary mb-6 text-center">💳 Payment Page</h2>
+      <h2 className="text-3xl font-bold text-primary mb-6 text-center"><span className='not-italic'>💳</span> Payment Form</h2>
+      {couponApplied && (
+        <p className="text-green-400 text-sm text-center mb-2">
+          You saved ৳{discountAmount} with this coupon!
+        </p>
+      )}
 
       {/* Coupon Field */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 items-end">
@@ -155,11 +160,11 @@ const CheckoutForm = () => {
         <div>
           <label className="label text-gray-300 font-medium flex items-center gap-2">
             <FaMoneyBill /> Total Price
-          </label>
-          <div className="flex items-center gap-4">
             {couponApplied && (
               <span className="line-through text-gray-400">৳{booking.price}</span>
             )}
+          </label>
+          <div className="flex items-center gap-4">
             <input type="text" value={`৳${discountedPrice}`} readOnly className="input input-bordered w-full bg-primary text-black font-bold" />
           </div>
         </div>
