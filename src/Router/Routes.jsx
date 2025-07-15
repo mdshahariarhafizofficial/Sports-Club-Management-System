@@ -14,6 +14,7 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
 import ManageCoupons from "../Pages/Dashboard/ManageCoupons/ManageCoupons";
 import ConfirmedBookings from "../Pages/Dashboard/ConfirmedBookings/ConfirmedBookings";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
+import ManageBookings from "../Pages/Dashboard/ManageBookings/ManageBookings";
 
 const router = createBrowserRouter([
 
@@ -96,10 +97,10 @@ const router = createBrowserRouter([
     //   path: 'manage-courts',
     //   Component: ManageCourts,
     // },
-    // {
-    //   path: 'manage-bookings',
-    //   Component: ManageBookings,
-    // },
+    {
+      path: 'manage-bookings',
+      Component: ManageBookings,
+    },
     {
       path: 'manage-coupons',
       Component: ManageCoupons,
