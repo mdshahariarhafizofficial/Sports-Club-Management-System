@@ -11,6 +11,7 @@ import CourtsPage from "../Pages/CourtsPage/CourtsPage";
 import ManageBookingsApproval from "../Pages/Dashboard/ManageBookingsApproval/ManageBookingsApproval";
 import ApprovedBookings from "../Pages/Dashboard/ApprovedBookings/ApprovedBookings";
 import Payment from "../Pages/Dashboard/Payment/Payment";
+import ManageCoupons from "../Pages/Dashboard/ManageCoupons/ManageCoupons";
 
 const router = createBrowserRouter([
 
@@ -98,10 +99,10 @@ const router = createBrowserRouter([
     //   path: 'manage-bookings',
     //   Component: ManageBookings,
     // },
-    // {
-    //   path: 'manage-coupons',
-    //   Component: ManageCoupons,
-    // },
+    {
+      path: 'manage-coupons',
+      Component: ManageCoupons,
+    },
     // {
     //   path: 'make-announcement',
     //   Component: MakeAnnouncement,
