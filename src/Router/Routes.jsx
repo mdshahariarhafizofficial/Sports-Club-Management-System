@@ -10,6 +10,7 @@ import PendingBookings from "../Pages/Dashboard/PendingBookings/PendingBookings"
 import CourtsPage from "../Pages/CourtsPage/CourtsPage";
 import ManageBookingsApproval from "../Pages/Dashboard/ManageBookingsApproval/ManageBookingsApproval";
 import ApprovedBookings from "../Pages/Dashboard/ApprovedBookings/ApprovedBookings";
+import Payment from "../Pages/Dashboard/Payment/Payment";
 
 const router = createBrowserRouter([
 
@@ -68,6 +69,11 @@ const router = createBrowserRouter([
     //   path: 'payment-history',
     //   Component: PaymentHistory,
     // },
+    // },
+    {
+      path: 'payment/:id',
+      Component: Payment,
+    },
     // {
     //   path: 'admin-profile',
     //   Component: AdminProfile,
