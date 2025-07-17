@@ -113,7 +113,7 @@ const AllUsers = () => {
                     <div className="avatar">
                       <div className="w-10 h-10 rounded-full ring ring-purple-400 ring-offset-base-100 ring-offset-2">
                         <img
-                          src={user.image || 'https://i.ibb.co/jT3Y5r3/user.png'}
+                          src={user.image || 'https://cdn-icons-png.flaticon.com/128/3033/3033143.png'}
                           alt="user"
                         />
                       </div>

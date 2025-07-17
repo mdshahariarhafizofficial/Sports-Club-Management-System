@@ -16,6 +16,7 @@ import ConfirmedBookings from "../Pages/Dashboard/ConfirmedBookings/ConfirmedBoo
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import ManageBookings from "../Pages/Dashboard/ManageBookings/ManageBookings";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import AdminProfile from "../Pages/Dashboard/AdminProfile/AdminProfile";
 
 const router = createBrowserRouter([
 
@@ -78,10 +79,10 @@ const router = createBrowserRouter([
       path: 'payment/:id',
       Component: Payment,
     },
-    // {
-    //   path: 'admin-profile',
-    //   Component: AdminProfile,
-    // },
+    {
+      path: 'admin-profile',
+      Component: AdminProfile,
+    },
     {
       path: 'manage-bookings-approval',
       Component: ManageBookingsApproval,
