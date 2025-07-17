@@ -67,7 +67,9 @@ const ManageBookings = () => {
             </tr>
           </thead>
           <tbody>
-            {bookings.map((booking, index) => (
+            {
+            bookings.length !== 0 ?
+            (bookings.map((booking, index) => (
               <tr key={booking._id}>
                 <td>{index + 1}</td>
                 <td>{booking.courtTitle}</td>
@@ -80,8 +82,19 @@ const ManageBookings = () => {
                     {booking.status}
                   </span>
                 </td>
+              </tr>)
+            ))
+            :
+                        (
+              <tr>
+                <td colSpan="7" className="text-center text-gray-500 py-4">
+                  No Bookings found
+                </td>
               </tr>
-            ))}
+            )
+
+          }
+
           </tbody>
         </table>
       </div>
