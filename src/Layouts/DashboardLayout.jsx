@@ -23,11 +23,14 @@ import {
   BsCheck2Circle
 } from "react-icons/bs";
 import { BiNews } from "react-icons/bi";
+import useUserRole from "../Hooks/useUserRole";
 
 
 
 const DashboardLayout = () => {
-
+  const {role, reloading} = useUserRole();
+  console.log(role);
+  
   return (
     <div>
       <div className="drawer lg:drawer-open ">
@@ -72,6 +75,57 @@ const DashboardLayout = () => {
             </a>            
             {/* Sidebar content here */}
 <>
+
+   {/* ------------- User Routes --------------  */}
+   {
+    !reloading && role === 'user' &&
+    <>
+  <li className="mr-4">
+    <NavLink
+      to="/dashboard"
+      end
+      className={({ isActive }) =>
+        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
+      }
+    >
+      <HiOutlineUserCircle className="inline-block mr-2 text-lg" />
+      My Profile
+    </NavLink>
+  </li>
+
+  <li className="mr-4">
+    <NavLink
+      to="/dashboard/pending-bookings"
+      className={({ isActive }) =>
+        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
+      }
+    >
+      <MdPendingActions className="inline-block mr-2 text-lg" />
+      Pending Bookings
+    </NavLink>
+  </li>
+
+{/* Announcements */}
+  <li className="mr-4">
+    <NavLink
+      to="/dashboard/announcements"
+      className={({ isActive }) =>
+        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
+      }
+    >
+      <BiNews className="inline-block mr-2 text-xl" />
+      Announcements
+    </NavLink>
+  </li>     
+    </>
+   }
+
+
+{/*  --------------- Member Route --------------- */}
+
+  {
+  !reloading && role === 'member' &&
+    <>
   <li className="mr-4">
     <NavLink
       to="/dashboard"
@@ -131,11 +185,32 @@ const DashboardLayout = () => {
       <MdOutlinePayment className="inline-block mr-2 text-lg" />
       Payment History
     </NavLink>
-  </li>
+  </li>  
 
+  {/* Announcements */}
   <li className="mr-4">
     <NavLink
-      to="/dashboard/admin-profile"
+      to="/dashboard/announcements"
+      className={({ isActive }) =>
+        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
+      }
+    >
+      <BiNews className="inline-block mr-2 text-xl" />
+      Announcements
+    </NavLink>
+  </li>     
+
+    </>
+  }
+
+
+{/* ----------------- ADMIN Route --------------- */}
+  {
+    !reloading && role === 'admin' &&
+    <>
+  <li className="mr-4">
+    <NavLink
+      to="/dashboard"
       className={({ isActive }) =>
         isActive ? "font-bold bg-primary" : "text-secondary font-medium"
       }
@@ -227,21 +302,13 @@ const DashboardLayout = () => {
       <MdCampaign className="inline-block mr-2 text-xl" />
       Make Announcement
     </NavLink>
-  </li>
+  </li> 
+    </>
+  }
 
-  <li className="mr-4">
-    <NavLink
-      to="/dashboard/announcements"
-      className={({ isActive }) =>
-        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
-      }
-    >
-      <BiNews className="inline-block mr-2 text-xl" />
-      Announcements
-    </NavLink>
-  </li>
+{/* --------------------------------- */}
+
 </>
-
           </ul>
 
         </div>

@@ -10,7 +10,7 @@ import axios from 'axios';
 import useAxios from '../../Hooks/useAxios';
 
 const Register = () => {
-    const {createUser, googleSignIn, setUser, updateUser} = useAuth();
+    const {createUser, googleSignIn, setUser, updateUser, setLoading} = useAuth();
     const [profilePic, setProfilePic] = useState('');
     const axiosUrl = useAxios();
 
@@ -49,7 +49,8 @@ const Register = () => {
           .then(() => {
             setUser({...user, userProfile});
             navigate(`${location.state ? location.state : '/' }`)          
-            toast.success('Account Created SuccessFul!')             
+            toast.success('Account Created SuccessFul!')
+           setLoading(false);              
           })
           .catch( (error) => {
             console.log(error);

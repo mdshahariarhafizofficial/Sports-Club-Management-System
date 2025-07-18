@@ -5,7 +5,6 @@ import Login from "../Pages/Login/Login";
 import AuthLayout from "../Layouts/AuthLayout";
 import Register from "../Pages/Register/Register";
 import DashboardLayout from "../Layouts/DashboardLayout";
-import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
 import PendingBookings from "../Pages/Dashboard/PendingBookings/PendingBookings";
 import CourtsPage from "../Pages/CourtsPage/CourtsPage";
 import ManageBookingsApproval from "../Pages/Dashboard/ManageBookingsApproval/ManageBookingsApproval";
@@ -16,11 +15,11 @@ import ConfirmedBookings from "../Pages/Dashboard/ConfirmedBookings/ConfirmedBoo
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import ManageBookings from "../Pages/Dashboard/ManageBookings/ManageBookings";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
-import AdminProfile from "../Pages/Dashboard/AdminProfile/AdminProfile";
 import ManageMembers from "../Pages/Dashboard/ManageMembers/ManageMembers";
 import ManageCourts from "../Pages/Dashboard/ManageCourts/ManageCourts";
 import MakeAnnouncement from "../Pages/Dashboard/MakeAnnouncement/MakeAnnouncement";
 import AnnouncementsPage from "../Pages/Dashboard/AnnouncementsPage/AnnouncementsPage";
+import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 
 const router = createBrowserRouter([
 
@@ -61,7 +60,7 @@ const router = createBrowserRouter([
   children: [
     {
       index: true,
-      Component: MyProfile, // /dashboard
+      element: <DashboardHome></DashboardHome>
     },
     {
       path: 'pending-bookings',
@@ -83,10 +82,10 @@ const router = createBrowserRouter([
       path: 'payment/:id',
       Component: Payment,
     },
-    {
-      path: 'admin-profile',
-      Component: AdminProfile,
-    },
+    // {
+    //   path: 'admin-profile',
+    //   Component: AdminProfile,
+    // },
     {
       path: 'manage-bookings-approval',
       Component: ManageBookingsApproval,

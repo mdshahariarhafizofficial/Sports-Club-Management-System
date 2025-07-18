@@ -7,11 +7,11 @@ import Loader from '../../Loading/Loader';
 import { format } from 'date-fns';
 
 const MyProfile = () => {
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
   // ✅ useQuery is always called
-  const { data: userInfo = {}, isLoading: queryLoading } = useQuery({
+  const { data: userInfo = {}, isLoading, isPending } = useQuery({
     queryKey: ['user', user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
@@ -22,7 +22,7 @@ const MyProfile = () => {
   console.log(userInfo[0]);
 
   // ✅ Then handle loading after all hooks
-  if (loading || queryLoading) {
+  if (isLoading || isPending ) {
     return (
         <Loader></Loader>
     );
