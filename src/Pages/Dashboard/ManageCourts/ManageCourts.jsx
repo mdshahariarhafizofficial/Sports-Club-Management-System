@@ -87,7 +87,7 @@ const ManageCourts = () => {
 
   return (
     <div className="px-6 py-8">
-      <div className='border-b-4 border-yellow-400 flex items-center justify-between pb-3'>
+      <div className='border-b-4 border-yellow-400 flex items-center flex-col gap-6 lg:flex-row justify-between pb-3'>
         <h2 className="text-4xl font-extrabold text-black tracking-wide flex items-center">
           <GiTennisCourt className="inline-block mr-2 text-4xl" />
           Manage Courts</h2>
@@ -139,7 +139,7 @@ const ManageCourts = () => {
                   <td className="py-3 px-4 border border-gray-300">{court.location}</td>
                   <td className="py-3 px-4 border border-gray-300 text-center">৳ {court.pricePerSession}</td>
                   <td className="py-3 px-4 border border-gray-300 max-w-xs text-sm">
-                    <ul className="list-disc list-inside text-gray-700 flex gap-3 grow">
+                    <ul className="list-disc list-inside text-gray-700 flex gap-3 shrink">
                       {court.slots?.map((slot, idx) => (<li key={idx}>{slot}</li>))}
                     </ul>
                   </td>
