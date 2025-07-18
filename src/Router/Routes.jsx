@@ -21,6 +21,7 @@ import MakeAnnouncement from "../Pages/Dashboard/MakeAnnouncement/MakeAnnounceme
 import AnnouncementsPage from "../Pages/Dashboard/AnnouncementsPage/AnnouncementsPage";
 import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 import ForbiddenPage from "../Pages/ForbiddenPage/ForbiddenPage";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
 
@@ -124,6 +125,10 @@ const router = createBrowserRouter([
 {
   path: '/forbidden',
   element: <ForbiddenPage></ForbiddenPage>
+},
+{
+  path: '/error',
+  Component: ErrorPage,
 }
 
 
