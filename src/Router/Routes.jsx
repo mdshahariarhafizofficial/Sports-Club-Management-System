@@ -18,6 +18,7 @@ import ManageBookings from "../Pages/Dashboard/ManageBookings/ManageBookings";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AdminProfile from "../Pages/Dashboard/AdminProfile/AdminProfile";
 import ManageMembers from "../Pages/Dashboard/ManageMembers/ManageMembers";
+import ManageCourts from "../Pages/Dashboard/ManageCourts/ManageCourts";
 
 const router = createBrowserRouter([
 
@@ -96,10 +97,10 @@ const router = createBrowserRouter([
       path: 'all-users',
       Component: AllUsers,
     },
-    // {
-    //   path: 'manage-courts',
-    //   Component: ManageCourts,
-    // },
+    {
+      path: 'manage-courts',
+      Component: ManageCourts,
+    },
     {
       path: 'manage-bookings',
       Component: ManageBookings,

@@ -55,7 +55,7 @@ const AllUsers = () => {
   return (
     <div className="p-6">
       {/* Title */}
-      <h2 className="text-4xl font-extrabold text-purple-700 text-center mb-8 flex justify-center items-center gap-2">
+      <h2 className="text-4xl font-extrabold text-black text-center mb-8 flex justify-center items-center gap-2">
         <MdPerson className="text-5xl" />
         All Users
       </h2>
@@ -75,7 +75,7 @@ const AllUsers = () => {
           </label>
           <button
             type="submit"
-            className="btn bg-purple-500 text-white hover:bg-purple-600"
+            className="btn bg-black text-white hover:bg-purple-600"
           >
             Search
           </button>
@@ -85,7 +85,7 @@ const AllUsers = () => {
       {/* Table */}
       <div className="overflow-x-auto bg-base-100 shadow-2xl rounded-xl">
         <table className="table table-zebra table-md">
-          <thead className="bg-purple-300 text-black text-base">
+          <thead className="bg-primary text-black text-base">
             <tr>
               <th>#</th>
               <th>Image</th>

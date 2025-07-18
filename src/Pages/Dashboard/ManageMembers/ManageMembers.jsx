@@ -58,6 +58,7 @@ const ManageMembers = () => {
           <thead className="bg-black text-white text-[15px]">
             <tr>
               <th>#</th>
+              <th>Image</th>
               <th>Name</th>
               <th>Email</th>
               <th>Member Since</th>
@@ -68,6 +69,16 @@ const ManageMembers = () => {
             {members.map((member, index) => (
               <tr key={member._id}>
                 <td>{index + 1}</td>
+                  <td>
+                    <div className="avatar">
+                      <div className="w-10 h-10 rounded-full ring ring-purple-400 ring-offset-base-100 ring-offset-2">
+                        <img
+                          src={member.image || 'https://cdn-icons-png.flaticon.com/128/3033/3033143.png'}
+                          alt="user"
+                        />
+                      </div>
+                    </div>
+                  </td>                
                 <td className="font-semibold">{member.name}</td>
                 <td>{member.email}</td>
                 <td>{new Date(member.memberSince).toDateString()}</td>
