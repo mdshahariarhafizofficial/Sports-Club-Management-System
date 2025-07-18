@@ -24,6 +24,7 @@ import ForbiddenPage from "../Pages/ForbiddenPage/ForbiddenPage";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import AdminRoutes from "../Routes/AdminRoutes";
 import PrivateRoutes from "../Routes/PrivateRoutes";
+import MemberRoutes from "../Routes/MemberRoutes";
 
 const router = createBrowserRouter([
 
@@ -68,23 +69,23 @@ const router = createBrowserRouter([
     },
     {
       path: 'pending-bookings',
-      Component: PendingBookings,
+      element: <PrivateRoutes><PendingBookings></PendingBookings></PrivateRoutes>
     },
     {
       path: 'approved-bookings',
-      Component: ApprovedBookings,
+      element: <MemberRoutes><ApprovedBookings></ApprovedBookings></MemberRoutes>
     },
     {
       path: 'confirmed-bookings',
-      Component: ConfirmedBookings,
+      element: <MemberRoutes><ConfirmedBookings></ConfirmedBookings></MemberRoutes>
     },
     {
       path: 'payment-history',
-      Component: PaymentHistory,
+      element: <MemberRoutes><PaymentHistory></PaymentHistory></MemberRoutes>
     },
     {
       path: 'payment/:id',
-      Component: Payment,
+      element: <MemberRoutes><Payment></Payment></MemberRoutes>
     },
     // {
     //   path: 'admin-profile',
@@ -120,7 +121,7 @@ const router = createBrowserRouter([
     },
     {
       path: 'announcements',
-      Component: AnnouncementsPage,
+      element: <PrivateRoutes><AnnouncementsPage></AnnouncementsPage></PrivateRoutes>
     },
   ],
 },
