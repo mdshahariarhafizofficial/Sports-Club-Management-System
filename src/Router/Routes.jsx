@@ -20,6 +20,7 @@ import ManageCourts from "../Pages/Dashboard/ManageCourts/ManageCourts";
 import MakeAnnouncement from "../Pages/Dashboard/MakeAnnouncement/MakeAnnouncement";
 import AnnouncementsPage from "../Pages/Dashboard/AnnouncementsPage/AnnouncementsPage";
 import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
+import ForbiddenPage from "../Pages/ForbiddenPage/ForbiddenPage";
 
 const router = createBrowserRouter([
 
@@ -119,6 +120,10 @@ const router = createBrowserRouter([
       Component: AnnouncementsPage,
     },
   ],
+},
+{
+  path: '/forbidden',
+  element: <ForbiddenPage></ForbiddenPage>
 }
 
 
