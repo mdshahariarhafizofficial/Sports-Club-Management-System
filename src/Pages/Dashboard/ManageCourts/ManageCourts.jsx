@@ -54,6 +54,7 @@ const ManageCourts = () => {
     await axiosSecure.post('/courts', courtData);
     toast.success('Court added');
     setNewCourt({ name: '', type: '', location: '', image: '', pricePerSession: '', slots: '', status: '' });
+    setIsEditOpen(false)
     refetch();
   };
 
@@ -136,7 +137,7 @@ const ManageCourts = () => {
                   <td className="py-3 px-4 border border-gray-300 font-semibold">{court.name}</td>
                   <td className="py-3 px-4 border border-gray-300">{court.type}</td>
                   <td className="py-3 px-4 border border-gray-300">{court.location}</td>
-                  <td className="py-3 px-4 border border-gray-300 text-center">{court.pricePerSession}</td>
+                  <td className="py-3 px-4 border border-gray-300 text-center">৳ {court.pricePerSession}</td>
                   <td className="py-3 px-4 border border-gray-300 max-w-xs text-sm">
                     <ul className="list-disc list-inside text-gray-700 flex gap-3 grow">
                       {court.slots?.map((slot, idx) => (<li key={idx}>{slot}</li>))}
@@ -190,7 +191,7 @@ const ManageCourts = () => {
                       ? setEditCourt({ ...editCourt, [field]: value })
                       : setNewCourt({ ...newCourt, [field]: value });
                   }}
-                  className="input input-bordered w-full pl-10"
+                  className="input input-bordered w-full pl-10 focus:bg-transparent"
                   required={field !== 'slots'}
                 />
                 <div className="absolute left-3 top-3 text-gray-500">{icon}</div>
@@ -207,7 +208,7 @@ const ManageCourts = () => {
                     ? setEditCourt({ ...editCourt, status: value })
                     : setNewCourt({ ...newCourt, status: value });
                 }}
-                className="select select-bordered w-full pl-10"
+                className="select select-bordered w-full pl-10 focus:bg-transparent"
                 required
               >
                 <option value="" disabled>Select Status</option>
