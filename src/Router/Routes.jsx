@@ -22,6 +22,8 @@ import AnnouncementsPage from "../Pages/Dashboard/AnnouncementsPage/Announcement
 import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 import ForbiddenPage from "../Pages/ForbiddenPage/ForbiddenPage";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import AdminRoutes from "../Routes/AdminRoutes";
+import PrivateRoutes from "../Routes/PrivateRoutes";
 
 const router = createBrowserRouter([
 
@@ -62,7 +64,7 @@ const router = createBrowserRouter([
   children: [
     {
       index: true,
-      element: <DashboardHome></DashboardHome>
+      element: <PrivateRoutes><DashboardHome></DashboardHome></PrivateRoutes>
     },
     {
       path: 'pending-bookings',
@@ -90,31 +92,31 @@ const router = createBrowserRouter([
     // },
     {
       path: 'manage-bookings-approval',
-      Component: ManageBookingsApproval,
+      element: <AdminRoutes><ManageBookingsApproval></ManageBookingsApproval></AdminRoutes>      
     },
     {
       path: 'manage-members',
-      Component: ManageMembers,
+      element: <AdminRoutes><ManageMembers></ManageMembers></AdminRoutes>      
     },
     {
       path: 'all-users',
-      Component: AllUsers,
+      element: <AdminRoutes><AllUsers></AllUsers></AdminRoutes>      
     },
     {
       path: 'manage-courts',
-      Component: ManageCourts,
+      element: <AdminRoutes><ManageCourts></ManageCourts></AdminRoutes>
     },
     {
       path: 'manage-bookings',
-      Component: ManageBookings,
+      element: <AdminRoutes><ManageBookings></ManageBookings></AdminRoutes>
     },
     {
       path: 'manage-coupons',
-      Component: ManageCoupons,
+      element: <AdminRoutes><ManageCoupons></ManageCoupons></AdminRoutes>
     },
     {
       path: 'make-announcement',
-      Component: MakeAnnouncement,
+      element: <AdminRoutes><MakeAnnouncement></MakeAnnouncement></AdminRoutes>
     },
     {
       path: 'announcements',
