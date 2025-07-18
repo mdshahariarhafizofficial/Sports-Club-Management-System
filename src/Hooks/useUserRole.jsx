@@ -9,7 +9,7 @@ const useUserRole = () => {
 
     const {
         data: role = 'user',
-        isLoading: reLoading,
+        isLoading: roleLoading,
         refetch,
     } = useQuery({
         queryKey: ['userRole', user?.email],
@@ -20,7 +20,7 @@ const useUserRole = () => {
         }
     });
 
-    return { role, reLoading: authLoading || reLoading, refetch }
+    return { role, roleLoading: authLoading || roleLoading, refetch }
 };
 
 export default useUserRole;

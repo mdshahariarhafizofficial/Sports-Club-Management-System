@@ -5,9 +5,9 @@ import AdminProfile from '../AdminProfile/AdminProfile';
 import MyProfile from '../MyProfile/MyProfile';
 
 const DashboardHome = () => {
-    const {role, reLoading} = useUserRole();
+    const {role, roleLoading} = useUserRole();
 
-    if (reLoading) {
+    if (roleLoading) {
         return <Loader></Loader>
     }
     if (role === 'admin') {

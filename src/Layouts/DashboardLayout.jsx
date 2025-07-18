@@ -28,7 +28,7 @@ import useUserRole from "../Hooks/useUserRole";
 
 
 const DashboardLayout = () => {
-  const {role, reloading} = useUserRole();
+  const {role, roleLoading} = useUserRole();
   console.log(role);
   
   return (
@@ -78,7 +78,7 @@ const DashboardLayout = () => {
 
    {/* ------------- User Routes --------------  */}
    {
-    !reloading && role === 'user' &&
+    !roleLoading && role === 'user' &&
     <>
   <li className="mr-4">
     <NavLink
@@ -124,7 +124,7 @@ const DashboardLayout = () => {
 {/*  --------------- Member Route --------------- */}
 
   {
-  !reloading && role === 'member' &&
+  !roleLoading && role === 'member' &&
     <>
   <li className="mr-4">
     <NavLink
@@ -206,7 +206,7 @@ const DashboardLayout = () => {
 
 {/* ----------------- ADMIN Route --------------- */}
   {
-    !reloading && role === 'admin' &&
+    !roleLoading && role === 'admin' &&
     <>
   <li className="mr-4">
     <NavLink
