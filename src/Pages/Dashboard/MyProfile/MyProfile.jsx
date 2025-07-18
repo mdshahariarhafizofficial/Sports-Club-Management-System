@@ -10,7 +10,7 @@ const MyProfile = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
-  // ✅ useQuery is always called
+  // useQuery is always called
   const { data: userInfo = {}, isLoading, isPending } = useQuery({
     queryKey: ['user', user?.email],
     enabled: !!user?.email,
@@ -21,7 +21,7 @@ const MyProfile = () => {
   });
   console.log(userInfo[0]);
 
-  // ✅ Then handle loading after all hooks
+  // Then handle loading after all hooks
   if (isLoading || isPending ) {
     return (
         <Loader></Loader>

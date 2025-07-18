@@ -211,6 +211,7 @@ const DashboardLayout = () => {
   <li className="mr-4">
     <NavLink
       to="/dashboard"
+      end
       className={({ isActive }) =>
         isActive ? "font-bold bg-primary" : "text-secondary font-medium"
       }
