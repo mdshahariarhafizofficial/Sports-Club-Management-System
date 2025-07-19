@@ -130,7 +130,7 @@ const router = createBrowserRouter([
   element: <ForbiddenPage></ForbiddenPage>
 },
 {
-  path: '/error',
+  path: '/*',
   Component: ErrorPage,
 }
 
