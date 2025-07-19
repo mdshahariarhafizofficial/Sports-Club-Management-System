@@ -96,7 +96,7 @@ const FancyBanner = () => {
                   cascade
                   damping={0.3}
                   delay={300}
-                  duration={800}
+                  duration={2000}
                   when={activeIndex === index}
                 >
                   <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold mb-4 text-[#ffe733] drop-shadow-md leading-snug">
