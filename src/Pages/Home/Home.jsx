@@ -1,10 +1,11 @@
 import React from 'react';
+import FancyBanner from '../../Components/FancyBanner/FancyBanner';
 
 const Home = () => {
     return (
-        <div>
-          Home Page  
-        </div>
+        <>
+          <FancyBanner></FancyBanner>
+        </>
     );
 };
 
