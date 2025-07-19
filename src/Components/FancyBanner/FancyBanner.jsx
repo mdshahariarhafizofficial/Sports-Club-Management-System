@@ -1,7 +1,9 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, EffectFade, Navigation } from "swiper/modules";
 import { FaArrowLeft, FaArrowRight, FaArrowRightLong } from "react-icons/fa6";
+import { Fade } from "react-awesome-reveal";
+
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/pagination";
@@ -38,6 +40,7 @@ const slides = [
 const FancyBanner = () => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <div className="relative w-full h-[450px] md:h-[550px] lg:h-[calc(100vh-83px)] overflow-hidden">
@@ -72,6 +75,7 @@ const FancyBanner = () => {
           swiper.params.navigation.prevEl = prevRef.current;
           swiper.params.navigation.nextEl = nextRef.current;
         }}
+        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         loop
         className="h-full custom-swiper"
       >
@@ -81,19 +85,31 @@ const FancyBanner = () => {
               <img
                 src={slide.img}
                 alt={slide.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover animate-zoom"
               />
               <div className="absolute inset-0 bg-[#000000bb] bg-opacity-60 flex flex-col justify-center items-center text-center text-white px-4 sm:px-6">
-                <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold mb-4 text-[#ffe733] drop-shadow-md leading-snug">
-                  {slide.title}
-                </h2>
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-4xl mb-6 leading-relaxed text-white/90">
-                  {slide.subtitle}
-                </p>
-                <button className="flex items-center gap-2 bg-[#ffe733] text-black px-6 py-3 text-sm md:text-base font-semibold rounded-full shadow-lg hover:bg-yellow-400 transition duration-300">
-                  {slide.buttonText}
-                  <FaArrowRightLong />
-                </button>
+                {/* Animate text + button only if active slide */}
+                <Fade
+                  key={activeIndex === index ? "active" : "inactive"}
+                  triggerOnce
+                  direction="down"
+                  cascade
+                  damping={0.3}
+                  delay={300}
+                  duration={800}
+                  when={activeIndex === index}
+                >
+                  <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold mb-4 text-[#ffe733] drop-shadow-md leading-snug">
+                    {slide.title}
+                  </h2>
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-4xl mb-6 leading-relaxed text-white/90">
+                    {slide.subtitle}
+                  </p>
+                  <button className="flex items-center gap-2 bg-[#ffe733] text-black px-6 py-3 text-sm md:text-base font-semibold rounded-full shadow-lg hover:bg-yellow-400 transition duration-300">
+                    {slide.buttonText}
+                    <FaArrowRightLong />
+                  </button>
+                </Fade>
               </div>
             </div>
           </SwiperSlide>
@@ -109,6 +125,20 @@ const FancyBanner = () => {
         .swiper-pagination-bullet-active {
           background: #ffe733;
           opacity: 1;
+        }
+
+        /* Zoom in/out animation */
+        @keyframes zoomInOut {
+          0%, 100% {
+            transform: scale(1.1);
+          }
+          50% {
+            transform: scale(1.05);
+          }
+        }
+        .animate-zoom {
+          animation: zoomInOut 10s ease-in-out infinite;
+          transform-origin: center;
         }
       `}</style>
     </div>
