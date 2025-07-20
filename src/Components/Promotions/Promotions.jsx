@@ -3,53 +3,21 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-const coupons = [
-  {
-    id: "687620cbd881a28bb81d85eb",
-    code: "WELCOME100",
-    discountAmount: 100,
-    title: "Welcome Offer",
-    description: "Enjoy ৳100 off on your first booking!"
-  },
-  {
-    id: "687620cbd881a28bb81d85ec",
-    code: "ABC50",
-    discountAmount: 50,
-    title: "Limited Time Deal",
-    description: "Grab ৳50 off on your weekend slot booking!"
-  },
-  {
-    id: "687620cbd881a28bb81d85ed",
-    code: "SAVE30",
-    discountAmount: 30,
-    title: "Summer Saver",
-    description: "Cool off with ৳30 discount this summer!"
-  },
-  {
-    id: "687620cbd881a28bb81d85ed",
-    code: "SAVE30",
-    discountAmount: 30,
-    title: "Summer Saver",
-    description: "Cool off with ৳30 discount this summer!"
-  },
-  {
-    id: "687620cbd881a28bb81d85ed",
-    code: "SAVE30",
-    discountAmount: 30,
-    title: "Summer Saver",
-    description: "Cool off with ৳30 discount this summer!"
-  },
-  {
-    id: "687620cbd881a28bb81d85ed",
-    code: "SAVE30",
-    discountAmount: 30,
-    title: "Summer Saver",
-    description: "Cool off with ৳30 discount this summer!"
-  },
-];
+import { useQuery } from '@tanstack/react-query';
+import useAxios from "../../Hooks/useAxios";
+import Loader from "../../Pages/Loading/Loader";
 
 const Promotions = () => {
+    const axiosSecure = useAxios();
+    const {data: coupons = [], isLoading, isPending } = useQuery({
+      queryKey: ['coupons'],
+      queryFn: async () => {
+        const res = await axiosSecure.get('/coupons');
+        return res.data;
+      }
+    });
+
+
     var settings = {
     dots: true,
     infinite: true,
@@ -87,6 +55,10 @@ const Promotions = () => {
       }
     ]
   };
+
+  if (isLoading || isPending) {
+    return <Loader></Loader>
+  }
   return (
     <section className="w-full bg-[#fffbea] py-20 px-4 md:px-8 text-black">
       <div className="max-w-[1500px] mx-auto">
