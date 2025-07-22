@@ -49,38 +49,44 @@ import Loader from '../Loading/Loader';
 
 const CourtsPage = () => {
   const { user } = useAuth();
-  // const {totalCourtsCount} = useLoaderData();
+  const {totalCourtsCount} = useLoaderData();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
   const [selectedCourt, setSelectedCourt] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSlots, setSelectedSlots] = useState({});
-  const totalCourtsCount = 50;
-  const [itemsPerPage, setItemsPerPage] = useState(6);
+  // const [itemsPerPage, setItemsPerPage] = useState(6);
   const [currentPage, setCurrentPage] = useState(0);
 
   // Pagination
+  const itemsPerPage = 6;
   const numberOfPages = Math.ceil(totalCourtsCount / itemsPerPage);
 
   const pages = [...Array(numberOfPages).keys()];
   console.log(pages);
 
-  const handleItemPerPage = (e) => {
-    console.log(parseInt(e.target.value));
-    setItemsPerPage(parseInt(e.target.value))
-    setCurrentPage(0)
-  }
+  // const handleItemPerPage = (e) => {
+  //   console.log(parseInt(e.target.value));
+  //   setItemsPerPage(parseInt(e.target.value))
+  //   setCurrentPage(0)
+  // }
+  const handlePrev = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage-1)
+    }
+  };
+  const handleNext = () => {
+    if (currentPage < pages.length-1) {
+      setCurrentPage(currentPage+1)
+    }
+  };
     
- 
-
-
-  
 
   // Load Courts
   const { data: courts = [], isPending, isLoading } = useQuery({
-    queryKey: ['courts'],
+    queryKey: ['courts', currentPage, itemsPerPage],
     queryFn: async()=> {
-      const res = await axiosSecure.get('/courts');
+      const res = await axiosSecure.get(`/courts?page=${currentPage}&size=${itemsPerPage}`);
       return res.data;
     }
   });
@@ -214,25 +220,32 @@ const CourtsPage = () => {
         ))}
       </div>
 
-      <div className='text-center mt-10 space-x-1'>
-        {
+      <div className='text-center mt-10 space-x-3'>
+        {/* {
           <p>currentPage{currentPage}</p>
-        }
+        } */}
+        <button
+        onClick={handlePrev}
+        className='btn bg-black text-primary'>Prev</button>
         {
           pages.map(page => 
             <button 
             onClick={() => setCurrentPage(page)}
             key={page} 
             className={`btn btn-square bg-black ${currentPage === page ? 'bg-primary text-[#000000d8]' : 'text-primary'}`}
-            >{page}</button>
+            >{page+1}</button>
           )
         }
+        <button 
+        onClick={handleNext}
+        className='btn bg-black text-primary'>Next</button>
+
+        {/* <label htmlFor="itemsPerPage">Items Per Page</label>
         <select value={itemsPerPage} onChange={handleItemPerPage} name="" id="" className='border bg-black text-white h-10 px-2 rounded-sm'>
           <option value="6">6</option>
-          <option value="12">12</option>
-          <option value="30">30</option>
-          <option value="50">50</option>
-        </select>
+          <option value="10">10</option>
+          <option value="20">20</option>
+        </select> */}
       </div>
 
       {/* Booking Modal */}
