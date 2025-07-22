@@ -3,6 +3,7 @@ import { Outlet, useNavigation } from 'react-router';
 import Navbar from '../Components/Navbar/Navbar';
 import Footer from '../Components/Footer/Footer';
 import Loader from '../Pages/Loading/Loader';
+import ScrollButton from '../Components/ScrollButton/ScrollButton';
 
 const Root = () => {
     const navigation = useNavigation();
@@ -21,6 +22,7 @@ const Root = () => {
         </main>
         <footer>
             <Footer></Footer>
+            <ScrollButton></ScrollButton>
         </footer>
         </>
     );
