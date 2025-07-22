@@ -21,8 +21,8 @@ const MyMap = () => {
   return (
     <MapContainer
       center={position}
-      zoom={13}
-      scrollWheelZoom={false}
+      zoom={10}
+      scrollWheelZoom={true}
       className="h-full w-full rounded-2xl z-0"
     >
       <TileLayer
