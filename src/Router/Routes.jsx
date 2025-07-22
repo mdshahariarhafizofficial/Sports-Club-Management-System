@@ -25,6 +25,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import AdminRoutes from "../Routes/AdminRoutes";
 import PrivateRoutes from "../Routes/PrivateRoutes";
 import MemberRoutes from "../Routes/MemberRoutes";
+import MyRatings from "../Pages/Dashboard/MyRatings/MyRatings";
 
 const router = createBrowserRouter([
 
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
     {
       path: 'payment-history',
       element: <MemberRoutes><PaymentHistory></PaymentHistory></MemberRoutes>
+    },
+    {
+      path: 'my-ratings',
+      element: <MemberRoutes><MyRatings></MyRatings></MemberRoutes>
     },
     {
       path: 'payment/:id',

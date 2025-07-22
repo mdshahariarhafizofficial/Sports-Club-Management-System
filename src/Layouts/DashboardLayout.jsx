@@ -15,7 +15,8 @@ import {
   FaClipboardCheck,
   FaUserShield,
   FaUsers,
-  FaTicketAlt
+  FaTicketAlt,
+  FaStar
 } from "react-icons/fa";
 import { GiTennisCourt } from "react-icons/gi";
 import {
@@ -184,6 +185,18 @@ const DashboardLayout = () => {
     >
       <MdOutlinePayment className="inline-block mr-2 text-lg" />
       Payment History
+    </NavLink>
+  </li>  
+
+  <li className="mr-4">
+    <NavLink
+      to="/dashboard/my-ratings"
+      className={({ isActive }) =>
+        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
+      }
+    >
+      <FaStar className="inline-block mr-2 text-lg" />
+      My Ratings
     </NavLink>
   </li>  
 
