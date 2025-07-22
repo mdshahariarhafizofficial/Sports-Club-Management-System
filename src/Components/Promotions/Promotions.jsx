@@ -60,7 +60,7 @@ const Promotions = () => {
     return <Loader></Loader>
   }
   return (
-    <section className="w-full bg-[#fffbea] py-20 px-4 md:px-8 text-black">
+    <section className="w-full bg-[#fffbea] py-24 px-4 md:px-8 text-black">
       <div className="max-w-[1500px] mx-auto">
         {/* Section Heading */}
         <div className="text-center mb-12">

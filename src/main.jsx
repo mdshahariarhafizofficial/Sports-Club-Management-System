@@ -10,7 +10,8 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import {
   QueryClient,
   QueryClientProvider,
-} from '@tanstack/react-query'
+} from '@tanstack/react-query';
+import 'leaflet/dist/leaflet.css';
 
 // Create a client
 const queryClient = new QueryClient()
