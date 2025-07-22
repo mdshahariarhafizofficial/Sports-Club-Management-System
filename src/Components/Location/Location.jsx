@@ -11,7 +11,7 @@ const Location = () => {
       <div className="max-w-[1500px] mx-auto">
         {/* Section Title */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-extrabold uppercase tracking-wide text-white inline-flex items-center gap-3 justify-center">
+          <h2 className="text-4xl md:text-5xl font-extrabold uppercase tracking-wide text-white inline-flex items-center gap-3 justify-center border-b-4 border-[#ffe733] pb-2">
             <FaMapMarkedAlt className="text-[#ffe733]" /> Our Location
           </h2>
           <p className="mt-4 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
