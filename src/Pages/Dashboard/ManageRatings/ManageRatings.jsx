@@ -69,6 +69,11 @@ const ManageRatings = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {ratings.map((rating) => (
           <div key={rating._id} className="bg-white rounded-xl border border-primary shadow-md p-5 space-y-3">
+              <div className="avatar">
+                    <div className="w-14 rounded-full">
+                    <img src={rating.userImage} />
+                    </div>
+                </div>
             <div className="flex justify-between items-center">
               <h2 className="text-lg font-semibold">
                <span className='text-black'>Name : </span> {rating.userName || 'user name'}</h2>
