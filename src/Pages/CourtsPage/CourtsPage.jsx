@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaTableTennis, FaMapMarkerAlt, FaClock, FaDollarSign, FaCalendarCheck } from 'react-icons/fa';
-import { useNavigate } from 'react-router';
+import { useLoaderData, useNavigate } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
 import BookingModal from '../../Components/BookingModal/BookingModal'; 
 import toast from 'react-hot-toast';
@@ -49,11 +49,32 @@ import Loader from '../Loading/Loader';
 
 const CourtsPage = () => {
   const { user } = useAuth();
+  // const {totalCourtsCount} = useLoaderData();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
   const [selectedCourt, setSelectedCourt] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSlots, setSelectedSlots] = useState({});
+  const totalCourtsCount = 50;
+  const [itemsPerPage, setItemsPerPage] = useState(6);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  // Pagination
+  const numberOfPages = Math.ceil(totalCourtsCount / itemsPerPage);
+
+  const pages = [...Array(numberOfPages).keys()];
+  console.log(pages);
+
+  const handleItemPerPage = (e) => {
+    console.log(parseInt(e.target.value));
+    setItemsPerPage(parseInt(e.target.value))
+    setCurrentPage(0)
+  }
+    
+ 
+
+
+  
 
   // Load Courts
   const { data: courts = [], isPending, isLoading } = useQuery({
@@ -102,6 +123,7 @@ const CourtsPage = () => {
     setSelectedCourt({ ...court, selectedSlots: selectedSlots[court.name] });
     setIsModalOpen(true);
   };
+
 
   return (
     <div className="max-w-[1500px] mx-auto px-4 py-12">
@@ -190,6 +212,27 @@ const CourtsPage = () => {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className='text-center mt-10 space-x-1'>
+        {
+          <p>currentPage{currentPage}</p>
+        }
+        {
+          pages.map(page => 
+            <button 
+            onClick={() => setCurrentPage(page)}
+            key={page} 
+            className={`btn btn-square bg-black ${currentPage === page ? 'bg-primary text-[#000000d8]' : 'text-primary'}`}
+            >{page}</button>
+          )
+        }
+        <select value={itemsPerPage} onChange={handleItemPerPage} name="" id="" className='border bg-black text-white h-10 px-2 rounded-sm'>
+          <option value="6">6</option>
+          <option value="12">12</option>
+          <option value="30">30</option>
+          <option value="50">50</option>
+        </select>
       </div>
 
       {/* Booking Modal */}

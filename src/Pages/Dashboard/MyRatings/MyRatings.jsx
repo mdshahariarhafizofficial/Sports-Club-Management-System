@@ -66,7 +66,7 @@ const MyRatings = () => {
       </h2>
       <div className='divider'></div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {ratings.map((rating) => (
           <div key={rating._id} className="bg-white rounded-xl border border-primary shadow-md p-5 space-y-3">
                 <div className="avatar">
