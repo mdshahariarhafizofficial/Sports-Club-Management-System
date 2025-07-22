@@ -45,6 +45,7 @@ const ConfirmedBookings = () => {
       courtTitle: selectedBooking.courtTitle,
       createdAt: new Date().toISOString(),
       userEmail: user.email,
+      userName: user.displayName,
       userImage: user.photoURL,
       rating,
       comment,

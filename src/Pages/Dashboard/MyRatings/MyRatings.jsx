@@ -60,17 +60,18 @@ const MyRatings = () => {
 
   return (
     <div className="px-4 py-10">
-      <h2 className="flex items-center gap-1 text-3xl font-bold text-center text-green-600 mb-6">
-        <FaStar size={40}></FaStar>
+      <h2 className="flex items-center gap-1 text-3xl font-bold text-center mb-6">
+        <FaStar size={40} color='#FFBC0B'></FaStar>
         My Ratings
       </h2>
       <div className='divider'></div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {ratings.map((rating) => (
-          <div key={rating._id} className="bg-white rounded-xl shadow-md p-5 space-y-3">
+          <div key={rating._id} className="bg-white rounded-xl border border-primary shadow-md p-5 space-y-3">
             <div className="flex justify-between items-center">
-              <h3 className="text-lg font-semibold">{rating.courtTitle || 'Court'}</h3>
+              <h2 className="text-lg font-semibold">
+               <span className='text-black'>Name : </span> {rating.userName || 'user name'}</h2>
               <div className="flex gap-2">
                 <button
                   onClick={() => setEditingRating(rating)}
@@ -88,8 +89,11 @@ const MyRatings = () => {
                 </button>
               </div>
             </div>
+              <h3 className="text-lg font-semibold text-gray-600"><span className='text-black'>Court Name : </span> {rating.courtTitle || 'Court'}</h3>
+            <span className='text-black font-semibold'>Rating : </span>            
             <Rating initialValue={rating.rating} size={20} SVGstyle={{ display: "inline" }} readonly />
-            <p className="text-sm text-gray-700">{rating.comment}</p>
+            <p className="text-sm text-gray-700">
+             <span className='text-black font-semibold'>Comment : </span> {rating.comment}</p>
             <p className="text-xs text-gray-400">Submitted: {new Date(rating.createdAt).toLocaleString()}</p>
           </div>
         ))}
@@ -112,7 +116,7 @@ const MyRatings = () => {
                 step="0.5"
                 defaultValue={editingRating.rating}
                 required
-                className="w-ful border px-3 py-2 rounded"
+                className="w-full border px-3 py-2 rounded"
               />
             </div>
             <div>
