@@ -26,6 +26,7 @@ import AdminRoutes from "../Routes/AdminRoutes";
 import PrivateRoutes from "../Routes/PrivateRoutes";
 import MemberRoutes from "../Routes/MemberRoutes";
 import MyRatings from "../Pages/Dashboard/MyRatings/MyRatings";
+import ManageRatings from "../Pages/Dashboard/ManageRatings/ManageRatings";
 
 const router = createBrowserRouter([
 
@@ -127,6 +128,10 @@ const router = createBrowserRouter([
     {
       path: 'announcements',
       element: <PrivateRoutes><AnnouncementsPage></AnnouncementsPage></PrivateRoutes>
+    },
+    {
+      path: 'manage-ratings',
+      element: <AdminRoutes><ManageRatings></ManageRatings></AdminRoutes>
     },
   ],
 },

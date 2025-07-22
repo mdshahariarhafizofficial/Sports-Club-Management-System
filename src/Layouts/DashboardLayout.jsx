@@ -293,6 +293,17 @@ const DashboardLayout = () => {
       Manage Bookings
     </NavLink>
   </li>
+    <li className="mr-4">
+    <NavLink
+      to="/dashboard/manage-ratings"
+      className={({ isActive }) =>
+        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
+      }
+    >
+      <FaStar className="inline-block mr-2 text-lg" />
+      Manage Ratings
+    </NavLink>
+  </li>  
 
   <li className="mr-4">
     <NavLink
