@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaTableTennis, FaMapMarkerAlt, FaClock, FaDollarSign, FaCalendarCheck } from 'react-icons/fa';
 import { useLoaderData, useNavigate } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
@@ -8,50 +8,14 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import Loader from '../Loading/Loader';
 
-// const demoCourts = [
-//   {
-//     name: "Grand Tennis Court A",
-//     type: "Tennis",
-//     image: "https://i.postimg.cc/NGrFy3Jn/Grand-Tennis-Court-A.jpg",
-//     pricePerSession: 1200,
-//     slots: ["7:00 AM", "9:00 AM", "11:00 AM", "3:00 PM", "5:00 PM"],
-//     location: "Sportiva Complex - Dhaka",
-//     status: "available"
-//   },
-//   {
-//     name: "Arena Badminton Hall",
-//     type: "Badminton",
-//     image: "https://i.postimg.cc/NFTjWX2t/Arena-Badminton-Hall.jpg",
-//     pricePerSession: 800,
-//     slots: ["8:00 AM", "10:00 AM", "1:00 PM", "4:00 PM", "6:00 PM"],
-//     location: "Elite Club - Chattogram",
-//     status: "available"
-//   },
-//   {
-//     name: "Squash Pro Room 1",
-//     type: "Squash",
-//     image: "https://i.postimg.cc/9F5MyLsQ/Squash-Pro-Room-1.jpg",
-//     pricePerSession: 1000,
-//     slots: ["7:30 AM", "9:30 AM", "12:00 PM", "2:30 PM", "6:00 PM"],
-//     location: "Fitness Plus - Sylhet",
-//     status: "available"
-//   },
-//   {
-//     name: "Power Squash Room 2",
-//     type: "Squash",
-//     image: "https://i.postimg.cc/Bnfq1tLL/Power-Squash-Room-2.jpg",
-//     pricePerSession: 950,
-//     slots: ["7:00 AM", "10:00 AM", "12:30 PM", "3:30 PM", "6:00 PM"],
-//     location: "Pro Sports Arena - Barishal",
-//     status: "available"
-//   },
-// ];
-
 const CourtsPage = () => {
   const { user } = useAuth();
   const {totalCourtsCount} = useLoaderData();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
+  const [selectedType, setSelectedType] = useState('');
+  const [selectedSlot, setSelectedSlot] = useState('');
+  const [sortOption, setSortOption] = useState('');
   const [selectedCourt, setSelectedCourt] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSlots, setSelectedSlots] = useState({});
@@ -76,7 +40,7 @@ const CourtsPage = () => {
     }
   };
   const handleNext = () => {
-    if (currentPage < pages.length-1) {
+    if (currentPage < pages?.length-1) {
       setCurrentPage(currentPage+1)
     }
   };
@@ -84,12 +48,23 @@ const CourtsPage = () => {
 
   // Load Courts
   const { data: courts = [], isPending, isLoading } = useQuery({
-    queryKey: ['courts', currentPage, itemsPerPage],
+    queryKey: ['courts', currentPage, itemsPerPage, selectedType, selectedSlot, sortOption],
     queryFn: async()=> {
-      const res = await axiosSecure.get(`/courts?page=${currentPage}&size=${itemsPerPage}`);
+      const params = new URLSearchParams();
+      params.append('page', currentPage);
+      params.append('size', itemsPerPage);
+      if (selectedType) params.append('type', selectedType);
+      if (selectedSlot) params.append('slot', selectedSlot);
+      if (sortOption) params.append('sort', sortOption);
+
+      const res = await axiosSecure.get(`/courts?${params.toString()}`);
       return res.data;
     }
   });
+
+  useEffect(() => {
+  setCurrentPage(0); // reset page on filter/sort change
+  }, [selectedType, selectedSlot, sortOption]);
 
   if (isLoading || isPending) {
     return <Loader></Loader>
@@ -143,19 +118,29 @@ const CourtsPage = () => {
 
       {/* Filter / Sort Area (Optional) */}
       <div className="flex flex-wrap gap-4 justify-center mb-10">
-        <select className="select select-bordered max-w-xs" defaultValue="">
+        <select className="select select-bordered max-w-xs" defaultValue=""
+        onChange={(e) => setSelectedType(e.target.value)}
+        >
           <option disabled value="">Filter by Type</option>
           <option value="Tennis">Tennis</option>
           <option value="Badminton">Badminton</option>
           <option value="Squash">Squash</option>
         </select>
-        <select className="select select-bordered max-w-xs" defaultValue="">
+
+        <select className="select select-bordered max-w-xs" 
+        defaultValue=""
+        onChange={(e) => setSelectedSlot(e.target.value)}        
+        >
           <option disabled value="">Filter by Slot</option>
           <option value="Morning">Morning</option>
           <option value="Afternoon">Afternoon</option>
           <option value="Evening">Evening</option>
         </select>
-        <select className="select select-bordered max-w-xs" defaultValue="">
+
+        <select className="select select-bordered max-w-xs" 
+        defaultValue=""
+        onChange={(e) => setSortOption(e.target.value)}
+        >
           <option disabled value="">Sort by Price</option>
           <option value="LowToHigh">Low to High</option>
           <option value="HighToLow">High to Low</option>
@@ -219,6 +204,14 @@ const CourtsPage = () => {
           </div>
         ))}
       </div>
+
+      {!isLoading && courts.length === 0 && (
+  <div className="flex flex-col items-center justify-center mb-16 mt-10 text-center">
+    <h2 className="text-2xl font-semibold mt-4 text-gray-600">No Courts Found</h2>
+    <p className="text-gray-500 mt-1">Try changing your filter or come back later.</p>
+  </div>
+)}
+
 
       <div className='text-center mt-10 space-x-3'>
         {/* {
