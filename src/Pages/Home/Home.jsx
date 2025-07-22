@@ -5,6 +5,7 @@ import Promotions from '../../Components/Promotions/Promotions';
 import Location from '../../Components/Location/Location';
 import Facilities from '../../Components/Facilities/Facilities';
 import PopularCourts from '../../Components/PopularCourts/PopularCourts';
+import Testimonials from '../../Components/Testimonials/Testimonials';
 
 const Home = () => {
     return (
@@ -14,6 +15,7 @@ const Home = () => {
           <Facilities></Facilities>
           <PopularCourts></PopularCourts>
           <Promotions></Promotions>
+          <Testimonials></Testimonials>
           <Location></Location>
         </>
     );

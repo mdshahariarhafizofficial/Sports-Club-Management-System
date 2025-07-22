@@ -13,8 +13,11 @@ import {
 import useAuth from '../../../Hooks/useAuth';
 import Loader from '../../Loading/Loader';
 import toast from 'react-hot-toast';
+import useUserRole from '../../../Hooks/useUserRole';
 
 const ConfirmedBookings = () => {
+  const {role} = useUserRole();
+  console.log(role);
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const [selectedBooking, setSelectedBooking] = useState(null);
@@ -46,6 +49,7 @@ const ConfirmedBookings = () => {
       createdAt: new Date().toISOString(),
       userEmail: user.email,
       userName: user.displayName,
+      role,
       userImage: user.photoURL,
       rating,
       comment,
