@@ -24,7 +24,7 @@ const CourtsPage = () => {
   const [selectedSlots, setSelectedSlots] = useState({});
   const [currentPage, setCurrentPage] = useState(0);
 
-  const itemsPerPage = 6;
+  const itemsPerPage = 8;
   const numberOfPages = Math.ceil(totalCourtsCount / itemsPerPage);
   const pages = [...Array(numberOfPages).keys()];
 
