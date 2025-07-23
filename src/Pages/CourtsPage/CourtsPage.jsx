@@ -9,6 +9,7 @@ import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import Loader from '../Loading/Loader';
 import Select from 'react-select';
 import chroma from 'chroma-js';
+import { PiCourtBasketballBold } from 'react-icons/pi';
 
 const CourtsPage = () => {
   const { user } = useAuth();
@@ -177,10 +178,10 @@ const CourtsPage = () => {
         </select>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-8">
         {courts.map((court, index) => (
-          <div key={index} className="bg-black rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
-            <div className="overflow-hidden h-56">
+          <div key={index} className="relative bg-black rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
+            <div className="overflow-hidden h-56 lg:h-46 rounded-lg">
               <img
                 src={court.image}
                 alt={court.name}
@@ -190,9 +191,9 @@ const CourtsPage = () => {
             <div className="p-5 space-y-3">
               <h2 className="text-xl font-semibold text-primary">{court.name}</h2>
 
-              <p className="flex items-center gap-2 text-gray-300">
-                <FaTableTennis /> {court.type}
-              </p>
+              <div className="absolute top-3 px-3 py-1 right-5 flex bg-primary items-center gap-2 justify-center border border-white text-black font-medium rounded">
+                <PiCourtBasketballBold size={20} /> {court.type}
+              </div>
               <p className="flex items-center gap-2 text-gray-300">
                 <FaMapMarkerAlt /> {court.location}
               </p>
