@@ -31,24 +31,33 @@ const CheckoutForm = () => {
     if (!coupon) return;
     try {
       const res = await axiosSecure.post('/validate-coupon', { code: coupon });
+
       if (res.data.valid) {
-        setDiscountAmount(res.data.discountAmount);
-        setDiscountedPrice(booking.price - res.data.discountAmount);
+        const percentage = res.data.discountAmount;
+        const discountTk = (booking.price * percentage) / 100;
+
+        setDiscountAmount(percentage);
+        setDiscountedPrice(booking.price - discountTk);
         setCouponApplied(true);
-        toast.success('Coupon applied!');
+        toast.success(`Coupon applied! You got ${percentage}% off`);
       } else {
         toast.error('Invalid coupon code');
       }
     } catch (err) {
       toast.error('Failed to apply coupon');
       console.log(err);
-      
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) return;
+
+    if (discountedPrice <= 0) {
+    toast.error('Final price is zero or less due to discount. Payment cannot be processed.');
+    return;
+    }
+
 
     setIsProcessing(true);
 
@@ -65,8 +74,11 @@ const CheckoutForm = () => {
     }
 
     try {
+      const finalPrice = discountedPrice ?? booking.price; // ✅ fallback to original price
+      console.log("Submitting payment for price:", finalPrice);
+
       const res = await axiosSecure.post('/create-payment-intent', {
-        price: discountedPrice,
+        price: finalPrice,
       });
 
       const confirm = await stripe.confirmCardPayment(res.data.clientSecret, {
@@ -77,25 +89,25 @@ const CheckoutForm = () => {
         const paymentInfo = {
           bookingId: booking._id,
           email: booking.userEmail,
-          price: discountedPrice,
+          price: finalPrice,
           transactionId: confirm.paymentIntent.id,
           date: new Date(),
         };
 
         await axiosSecure.post('/payments', paymentInfo);
 
-          await Swal.fire({
-            icon: 'success',
-            title: 'Payment Successful!',
-            text: 'Your booking is now confirmed.',
-            confirmButtonColor: '#22c55e',
-            timer: 1500,
-          });
+        await Swal.fire({
+          icon: 'success',
+          title: 'Payment Successful!',
+          text: 'Your booking is now confirmed.',
+          confirmButtonColor: '#22c55e',
+          timer: 1500,
+        });
+
         navigate('/dashboard/confirmed-bookings');
       }
     } catch (err) {
-        console.log(err);
-        
+      console.log(err);
       toast.error('Payment failed');
     } finally {
       setIsProcessing(false);
@@ -109,7 +121,7 @@ const CheckoutForm = () => {
       <h2 className="text-3xl font-bold text-primary mb-6 text-center"><span className='not-italic'>💳</span> Payment Form</h2>
       {couponApplied && (
         <p className="text-green-400 text-sm text-center mb-2">
-          You saved ৳{discountAmount} with this coupon!
+          You saved {discountAmount}% with this coupon!
         </p>
       )}
 
@@ -168,11 +180,11 @@ const CheckoutForm = () => {
           <label className="label text-gray-300 font-medium flex items-center gap-2">
             <FaMoneyBill /> Total Price
             {couponApplied && (
-              <span className="line-through text-gray-400">৳{booking.price}</span>
+              <span className="line-through text-gray-400 ml-2">৳{booking.price}</span>
             )}
           </label>
           <div className="flex items-center gap-4">
-            <input type="text" value={`৳${discountedPrice}`} readOnly className="input input-bordered w-full bg-primary text-black font-bold" />
+            <input type="text" value={`৳${discountedPrice ?? booking.price}`} readOnly className="input input-bordered w-full bg-primary text-black font-bold" />
           </div>
         </div>
 
