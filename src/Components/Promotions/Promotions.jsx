@@ -65,7 +65,7 @@ const Promotions = () => {
         {/* Section Heading */}
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-extrabold text-black uppercase tracking-wide">
-            <span className="not-italic">🎁</span> Exclusive Promotions
+            <span className="not-italic">🎁</span> Special Discount Offers
           </h2>
           <p className="mt-4 text-base md:text-lg text-gray-700 max-w-2xl mx-auto">
             Use these coupon codes while booking and save big on your next game!
@@ -93,7 +93,7 @@ const Promotions = () => {
                   </span>
                 </div>
                 <div className="text-sm text-green-700 font-semibold">
-                  Discount: ৳{coupon.discountAmount}
+                  Discount: {coupon.discountAmount}%
                 </div>
               </div>
             </div>

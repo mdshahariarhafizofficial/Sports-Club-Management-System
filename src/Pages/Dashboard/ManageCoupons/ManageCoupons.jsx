@@ -121,7 +121,7 @@ const ManageCoupons = () => {
                 />
               </div>
               <div>
-                <label className="label text-gray-300">Discount Amount (৳)</label>
+                <label className="label text-gray-300">Discount Amount (%)</label>
                 <input
                   type="number"
                   className="input input-bordered w-full"
@@ -164,7 +164,7 @@ const ManageCoupons = () => {
               <tr>
                 <th>#</th>
                 <th>Coupon Code</th>
-                <th>Discount (৳)</th>
+                <th>Discount (%)</th>
                 <th>Title</th>
                 <th>Description</th>
                 <th>Actions</th>
