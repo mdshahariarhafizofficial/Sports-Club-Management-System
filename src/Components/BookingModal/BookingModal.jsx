@@ -16,7 +16,7 @@ import toast from 'react-hot-toast';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 
-const BookingModal = ({ court, closeModal }) => {
+const BookingModal = ({ court, closeModal, onSuccess }) => {
   const {user} = useAuth();
   const axiosSecure = useAxiosSecure();
   const {
@@ -50,7 +50,7 @@ const BookingModal = ({ court, closeModal }) => {
       return res.data;
     },
     onSuccess: () => {
-        Swal.fire({
+    Swal.fire({
     title: 'Booking Request Sent!',
     text: 'Your booking request has been submitted for admin approval.',
     icon: 'success',
@@ -69,7 +69,7 @@ const BookingModal = ({ court, closeModal }) => {
       popup: 'animate__animated animate__fadeOutUp',
     },
   });
-      closeModal();
+      onSuccess()
     },
     onError: (error) => {
       toast.error(`Booking Failed: ${error.message}`);
