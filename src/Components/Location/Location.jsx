@@ -4,6 +4,7 @@ import { FiPhone, FiMail } from "react-icons/fi";
 import { FaMapMarkedAlt } from "react-icons/fa";
 import { BiSolidMapPin } from "react-icons/bi";
 import MyMap from "../MyMap/MyMap";
+import { Slide } from "react-awesome-reveal";
 
 const Location = () => {
   return (
@@ -22,35 +23,40 @@ const Location = () => {
         {/* Grid */}
         <div className="grid md:grid-cols-[1fr_1.2fr] gap-8">
           {/* Address Box */}
-          <div className="bg-[#1a1a1a] border border-[#ffe733] rounded-2xl shadow-lg p-8 h-[450px] flex flex-col justify-center">
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 flex items-center gap-3">
-              <BiSolidMapPin className="text-[#ffe733] text-3xl" />
-              Address Details
-            </h3>
-            <ul className="space-y-5 text-gray-200 text-lg md:text-xl leading-relaxed">
-              <li className="flex items-center gap-4">
-                <MdLocationOn className="text-[#ffe733] text-2xl" />
-                Gulshan 1, Dhaka, Bangladesh
-              </li>
-              <li className="flex items-center gap-4">
-                <FiPhone className="text-[#ffe733] text-2xl" />
-                +880 123 456 789
-              </li>
-              <li className="flex items-center gap-4">
-                <FiMail className="text-[#ffe733] text-2xl" />
-                support@sportiva.com
-              </li>
-              <li className="flex items-center gap-4">
-                <MdAccessTime className="text-[#ffe733] text-2xl" />
-                Sat – Thu: 9:00 AM – 6:00 PM
-              </li>
-            </ul>
-          </div>
+          <Slide direction="left" triggerOnce duration={2500}>
+            <div className="bg-[#1a1a1a] border border-[#ffe733] rounded-2xl shadow-lg p-8 h-[450px] flex flex-col justify-center">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 flex items-center gap-3">
+                <BiSolidMapPin className="text-[#ffe733] text-3xl" />
+                Address Details
+              </h3>
+              <ul className="space-y-5 text-gray-200 text-lg md:text-xl leading-relaxed">
+                <li className="flex items-center gap-4">
+                  <MdLocationOn className="text-[#ffe733] text-2xl" />
+                  Gulshan 1, Dhaka, Bangladesh
+                </li>
+                <li className="flex items-center gap-4">
+                  <FiPhone className="text-[#ffe733] text-2xl" />
+                  +880 123 456 789
+                </li>
+                <li className="flex items-center gap-4">
+                  <FiMail className="text-[#ffe733] text-2xl" />
+                  support@sportiva.com
+                </li>
+                <li className="flex items-center gap-4">
+                  <MdAccessTime className="text-[#ffe733] text-2xl" />
+                  Sat – Thu: 9:00 AM – 6:00 PM
+                </li>
+              </ul>
+            </div>
+          </Slide>
 
           {/* Map Box - wider */}
-          <div className="bg-[#1a1a1a] border border-[#ffe733] rounded-2xl shadow-lg h-[450px] flex items-center justify-center text-gray-400 text-lg font-semibold">
-            <MyMap />
-          </div>
+          <Slide direction="right" triggerOnce duration={2500}>
+            <div className="bg-[#1a1a1a] border border-[#ffe733] rounded-2xl shadow-lg h-[450px] flex items-center justify-center text-gray-400 text-lg font-semibold">
+              <MyMap />
+            </div>
+          </Slide>
+
         </div>
       </div>
     </section>

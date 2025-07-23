@@ -1,10 +1,10 @@
-import { useContext } from 'react';
+// import { useContext } from 'react';
 import { NavLink } from 'react-router';
 import logo from '../../assets/Logo.png';
 import AuthContext from '../../Context/AuthContext';
 
 const Footer = () => {
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
 
   return (
     <div className="bg-neutral text-white">
@@ -51,29 +51,31 @@ const Footer = () => {
         {/* Quick Links */}
         <div>
           <h2 className="text-primary text-xl font-semibold mb-4">Quick Links</h2>
-          <ul className="space-y-3">
-            <li>
-              <NavLink to="/" className="hover:text-primary transition">Home</NavLink>
-            </li>
-            <li>
-              <NavLink to="/fridge" className="hover:text-primary transition">Fridge</NavLink>
-            </li>
-            {user && (
-              <>
-                <li>
-                  <NavLink to="/add-food" className="hover:text-primary transition">Add Food</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/my-items" className="hover:text-primary transition">My Items</NavLink>
-                </li>
-              </>
-            )}
-            <li>
-              <NavLink to="/about" className="hover:text-primary transition">About Us</NavLink>
-            </li>
-            <li>
-              <NavLink to="/faq" className="hover:text-primary transition">FAQ</NavLink>
-            </li>
+          <ul className='space-y-4'>
+      <li>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "text-primary border-b-2 rounded-none font-bold"
+              : "font-medium text-white hover:text-primary"
+          }
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/courts"
+          className={({ isActive }) =>
+            isActive
+              ? "text-primary border-b-2 rounded-none font-bold"
+              : "font-medium text-white hover:text-primary"
+          }
+        >
+          Courts
+        </NavLink>
+      </li>            
           </ul>
         </div>
 
