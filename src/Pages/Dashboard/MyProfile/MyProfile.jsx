@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaUser, FaEnvelope, FaCalendarAlt, FaCrown } from 'react-icons/fa';
+import { FaUser, FaEnvelope, FaCalendarAlt, FaCrown, FaUserClock } from 'react-icons/fa';
 import useAuth from '../../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
@@ -67,6 +67,21 @@ const MyProfile = () => {
               Role: <span className="font-semibold">{userInfo[0]?.role || 'User'}</span>
             </span>
           </div>
+
+          {
+            userInfo[0]?.role === 'member' &&
+            <div className="flex items-center gap-3">
+              <FaUserClock size={20} className="text-primary" />
+              <span className="text-lg">
+                <span className='mr-2'>Member Since:</span>{}
+                {userInfo[0]?.createdAt
+                  ? format(new Date(userInfo[0]?.memberSince), 'EEEE, MMMM d, yyyy') 
+                  : 'N/A'}
+              </span>
+            </div>
+          }
+
+
         </div>
       </div>
     </div>

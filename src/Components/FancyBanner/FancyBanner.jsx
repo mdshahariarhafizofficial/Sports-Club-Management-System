@@ -20,6 +20,7 @@ const slides = [
     subtitle:
       "Experience the perfect blend of fitness, fun, and community — all under one roof. Our club is designed to inspire and energize every individual.",
     buttonText: "Explore Club",
+    link: '#about',
   },
   {
     img: slide2,
@@ -27,6 +28,7 @@ const slides = [
     subtitle:
       "Whether it’s Tennis, Badminton, or Basketball — our professional-grade courts provide the best environment for both beginners and champions.",
     buttonText: "View Courts",
+    link: '/courts',
   },
   {
     img: slide3,
@@ -34,6 +36,7 @@ const slides = [
     subtitle:
       "Stay active, learn new skills, and enjoy fun tournaments, group classes, and more. Every day is a new adventure waiting for you.",
     buttonText: "Join Activities",
+    link: '/courts',
   },
 ];
 
@@ -105,10 +108,12 @@ const FancyBanner = () => {
                   <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-4xl mb-6 leading-relaxed text-white/90">
                     {slide.subtitle}
                   </p>
-                  <button className="flex items-center gap-2 bg-[#ffe733] text-black px-6 py-3 text-sm md:text-base font-semibold rounded-full shadow-lg hover:bg-yellow-400 transition duration-300">
-                    {slide.buttonText}
-                    <FaArrowRightLong />
-                  </button>
+                  <a href={`${slide.link}`}>
+                    <button className="flex items-center gap-2 bg-[#ffe733] text-black px-6 py-3 text-sm md:text-base font-semibold rounded-full shadow-lg hover:bg-yellow-400 transition duration-300">
+                      {slide.buttonText}
+                      <FaArrowRightLong />
+                    </button>
+                  </a>
                 </Fade>
               </div>
             </div>

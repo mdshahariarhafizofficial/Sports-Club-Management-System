@@ -2,13 +2,14 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import useAuth from './useAuth';
 import { auth } from '../Firebase/firebase.config';
+import { useNavigate } from 'react-router';
 
 const axiosSecure = axios.create({
     baseURL: 'http://localhost:5000',
 })
 const useAxiosSecure = () => {
-    const {user} = useAuth();
-
+    const {user, handleSingOut} = useAuth();
+    const navigate = useNavigate();
     useEffect(() => {
         if(!user) return;
         const interceptor = axiosSecure.interceptors.request.use(async (config) => {
@@ -23,13 +24,20 @@ const useAxiosSecure = () => {
     }, [user]);
 
 
-    //----- Response ------
-// axios.interceptors.response.use(function (response) {
-//     return response;
-//   }, function (error) {
+    // ----- Response ------
+axios.interceptors.response.use(function (response) {
+    return response;
+  }, function (error) {
+        const status = error.status;
+        if (status === 403) {
+            navigate('/forbidden');
+        }
+        else if (status === 401) {
+            handleSingOut()
+        }
 
-//     return Promise.reject(error);
-//   });
+    return Promise.reject(error);
+  });
 
     return axiosSecure;
 };

@@ -4,7 +4,7 @@ import missionImg from '../../assets/mission.jpg';
 import { Slide } from "react-awesome-reveal";
 const AboutClub = () => {
   return (
-    <section className="w-full px-4 md:px-8 py-24 bg-white text-black">
+    <section id="about" className="w-full px-4 md:px-8 py-24 bg-white text-black">
       <div className="max-w-[1500px] mx-auto space-y-14">
         {/* Section Heading */}
         <div className="text-center">
