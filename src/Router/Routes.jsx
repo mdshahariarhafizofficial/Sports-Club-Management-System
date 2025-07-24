@@ -28,6 +28,7 @@ import MemberRoutes from "../Routes/MemberRoutes";
 import MyRatings from "../Pages/Dashboard/MyRatings/MyRatings";
 import ManageRatings from "../Pages/Dashboard/ManageRatings/ManageRatings";
 import Loader from "../Pages/Loading/Loader";
+import ContactUs from "../Pages/ContactUs/ContactUs";
 
 const router = createBrowserRouter([
 
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
               Component: CourtsPage,
               loader: () => fetch('http://localhost:5000/courtsCount'),
               hydrateFallbackElement: <Loader></Loader>,
+            },
+            {
+              path: 'contact-us',
+              Component: ContactUs,
             }
         ]
     },

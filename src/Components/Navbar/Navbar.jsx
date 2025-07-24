@@ -45,6 +45,19 @@ const Navbar = () => {
             </button>
           </Link>
       }
+      <li>
+        <NavLink
+          to="/contact-us"
+          className={({ isActive }) =>
+            isActive
+              ? "text-primary border-b-2 rounded-none font-bold"
+              : "font-medium text-white hover:text-primary"
+          }
+        >
+           Contact Us
+        </NavLink>
+      </li>
+
     </>
   );
 
