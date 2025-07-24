@@ -88,6 +88,7 @@ npm run dev
 cd server
 npm run dev
 
+```
 ---
 
 ## 👨‍💻 Developer Info
