@@ -33,6 +33,7 @@ import Support from "../Pages/Support/Support";
 import FAQPage from "../Pages/FAQPage/FAQPage";
 import TermsOfUse from "../Pages/TermsOfUse/TermsOfUse";
 import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
+import CookiePolicy from "../Pages/CookiePolicy/CookiePolicy";
 
 const router = createBrowserRouter([
 
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
             {
               path: 'privacy-policy',
               Component: PrivacyPolicy
+            },
+            {
+              path: 'cookie-policy',
+              Component: CookiePolicy,
             }
         ]
     },
