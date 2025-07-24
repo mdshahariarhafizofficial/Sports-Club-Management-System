@@ -138,7 +138,7 @@ const Navbar = () => {
             <ul className="menu bg-black text-base-content min-h-full w-80 p-4 space-y-4">
               {/* Sidebar content here */}
               {menu}
-                <li>
+                <li className={`${!user && 'hidden'}`}>
                   <button
                     onClick={() => handleSingOut()}
                     className="btn btn-sm bg-primary text text-black py-5 mt-1"

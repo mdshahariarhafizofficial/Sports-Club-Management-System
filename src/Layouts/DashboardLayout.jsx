@@ -1,11 +1,13 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router";
+import { NavLink, Outlet,} from "react-router";
 import logo from '../assets/logo.png';
 import {
   MdPendingActions,
   MdOutlinePayment,
   MdCampaign,
-  MdOutlineAssignmentTurnedIn
+  MdOutlineAssignmentTurnedIn,
+  MdLogout,
+  MdSpaceDashboard
 } from "react-icons/md";
 import {
   HiOutlineUserCircle,
@@ -16,7 +18,9 @@ import {
   FaUserShield,
   FaUsers,
   FaTicketAlt,
-  FaStar
+  FaStar,
+  FaRegUserCircle,
+  FaHome
 } from "react-icons/fa";
 import { GiTennisCourt } from "react-icons/gi";
 import {
@@ -25,10 +29,13 @@ import {
 } from "react-icons/bs";
 import { BiNews } from "react-icons/bi";
 import useUserRole from "../Hooks/useUserRole";
+import useAuth from "../Hooks/useAuth";
+import { Tooltip } from "react-tooltip";
 
 
 
 const DashboardLayout = () => {
+  const {handleSingOut, user} = useAuth();
   const {role, roleLoading} = useUserRole();
   console.log(role);
   
@@ -39,9 +46,9 @@ const DashboardLayout = () => {
         <div className="drawer-content bg-white flex flex-col">
 
         {/* Navbar */}
-        <div className="navbar bg-black w-full  lg:hidden">
-        <div className="flex-none">
-            <label htmlFor="my-drawer-2" aria-label="open sidebar" className="btn btn-square btn-ghost">
+        <div className="navbar bg-black w-full py-5">
+        <div className="flex-none lg:hidden">
+            <label htmlFor="my-drawer-2" aria-label="open sidebar" className="btn btn-square btn-ghost hover:bg-black">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -57,7 +64,62 @@ const DashboardLayout = () => {
             </svg>
             </label>
         </div>
-        <div className="mx-2 flex-1 px-2 text-primary font-bold">Dashboard</div>
+        <div className="mx-2 flex-1 px-2">
+          <h2 className="flex items-center gap-1 text-primary font-bold lg:text-2xl">
+            <MdSpaceDashboard size={35} className="hidden lg:block" />
+            Dashboard            
+          </h2>
+        </div>
+
+        {/* User Image */}
+        <div>
+        <Tooltip id='my-tooltip'></Tooltip>
+        {user && (
+          <div className="flex items-center gap-4 pr-3">
+            <h2 className="hidden md:block text-gray-300">{user?.email}</h2>
+            {/* Profile Dropdown with Dashboard Link */}
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                data-tooltip-id="my-tooltip"
+                data-tooltip-content={`${user && user.displayName}`}
+                data-tooltip-place="bottom"
+                role="button"
+                className="avatar"
+              >
+                <div className="ring-primary ring-offset-black w-12 rounded-full ring-2 ring-offset-2">
+                  <img
+                    className="cursor-pointer"
+                    src={user?.photoURL ? user?.photoURL : "https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"}
+                    referrerPolicy="no-referrer"
+                    alt="user"
+                  />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="mt-3 z-[1] p-3 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 space-y-3"
+              >
+                <div className="cursor-default">
+                  <span className="font-semibold text-black flex items-center gap-1">
+                    <FaRegUserCircle className="text-primary" size={30} /> {user? user?.displayName : 'user name'}
+                  </span>
+                </div>
+                <li>
+                  <button
+                    onClick={() => handleSingOut()}
+                    className="btn btn-sm bg-primary text-black py-3 mt-1"
+                  >
+                    <MdLogout size={22}></MdLogout>
+                    Log Out
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        ) }      
+        </div>
+
         </div>
 
            {/* Page content here  */}
@@ -70,12 +132,24 @@ const DashboardLayout = () => {
             className="drawer-overlay"
           ></label>
 
-          <ul className="menu gap-4 bg-black text-base-content min-h-full w-80 p-4">
+          <ul className="relative menu gap-4 bg-black text-base-content min-h-full w-80 p-4">
             <a href="/">
               <img src={logo} className="w-40 mb-5" alt="" />
             </a>            
             {/* Sidebar content here */}
 <>
+  <li className="mr-4">
+    <NavLink
+      to="/"
+      end
+      className={({ isActive }) =>
+        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
+      }
+    >
+      <FaHome className="inline-block mr-2 text-lg" />
+      Back To Home
+    </NavLink>
+  </li>
 
    {/* ------------- User Routes --------------  */}
    {
@@ -334,6 +408,18 @@ const DashboardLayout = () => {
 {/* --------------------------------- */}
 
 </>
+
+            <div className="w-[90%] text-primary absolute bottom-6">
+              <li>
+                  <button
+                    onClick={() => handleSingOut()}
+                    className="btn w-full bg-primary text-black py-3 mt-1"
+                  >
+                    <MdLogout size={22}></MdLogout>
+                    Log Out
+                  </button>              
+              </li>
+            </div>          
           </ul>
 
         </div>

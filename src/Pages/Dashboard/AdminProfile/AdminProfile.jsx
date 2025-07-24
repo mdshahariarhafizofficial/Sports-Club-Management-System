@@ -5,6 +5,7 @@ import Loader from '../../Loading/Loader';
 import CountUp from 'react-countup';
 import { FaCrown, FaUsers, FaUserShield, FaBuilding } from 'react-icons/fa';
 import AuthContext from '../../../Context/AuthContext';
+import { GiTennisCourt } from 'react-icons/gi';
 
 const AdminProfile = () => {
   const axiosSecure = useAxiosSecure();
@@ -47,7 +48,7 @@ const AdminProfile = () => {
         {/* Total Courts */}
         <div className="bg-gradient-to-br from-yellow-100 to-white rounded-2xl shadow-md p-6 border border-yellow-200 text-center hover:scale-105 transition-transform">
           <div className="flex justify-center items-center text-yellow-600 text-4xl mb-3">
-            <FaBuilding />
+            <GiTennisCourt />
           </div>
           <p className="text-xl font-medium text-gray-700">Total Courts</p>
           <h2 className="text-5xl font-bold text-yellow-600 mt-1">
