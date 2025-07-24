@@ -90,7 +90,7 @@ npm run dev
 
 ---
 
-## 👨‍💼 Developer Info
+## 👨‍💻 Developer Info
 
 - **Name:** Md. Shahariar Hafiz  
 - **Email:** shahariar.works@gmail.com  
