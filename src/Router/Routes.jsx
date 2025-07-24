@@ -29,6 +29,7 @@ import MyRatings from "../Pages/Dashboard/MyRatings/MyRatings";
 import ManageRatings from "../Pages/Dashboard/ManageRatings/ManageRatings";
 import Loader from "../Pages/Loading/Loader";
 import ContactUs from "../Pages/ContactUs/ContactUs";
+import Support from "../Pages/Support/Support";
 
 const router = createBrowserRouter([
 
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
             {
               path: 'contact-us',
               Component: ContactUs,
+            },
+            {
+              path: 'support',
+              Component: Support,
             }
         ]
     },

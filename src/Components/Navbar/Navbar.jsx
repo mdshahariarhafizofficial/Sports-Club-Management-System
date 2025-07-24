@@ -57,6 +57,18 @@ const Navbar = () => {
            Contact Us
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/support"
+          className={({ isActive }) =>
+            isActive
+              ? "text-primary border-b-2 rounded-none font-bold"
+              : "font-medium text-white hover:text-primary"
+          }
+        >
+           Support
+        </NavLink>
+      </li>
 
     </>
   );
