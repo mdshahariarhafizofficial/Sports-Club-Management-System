@@ -30,6 +30,7 @@ import ManageRatings from "../Pages/Dashboard/ManageRatings/ManageRatings";
 import Loader from "../Pages/Loading/Loader";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import Support from "../Pages/Support/Support";
+import FAQPage from "../Pages/FAQPage/FAQPage";
 
 const router = createBrowserRouter([
 
@@ -55,6 +56,9 @@ const router = createBrowserRouter([
             {
               path: 'support',
               Component: Support,
+            },{
+              path: 'faq',
+              Component: FAQPage
             }
         ]
     },
