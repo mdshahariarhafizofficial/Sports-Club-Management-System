@@ -36,15 +36,6 @@ const Navbar = () => {
           Courts
         </NavLink>
       </li>
-      {
-        !user &&
-        <Link to="login" className="lg:hidden">
-            <button className="w-full btn btn-primary text-black text-base font-normal py-4 tracking-wider hover:bg-secondary hover:text-black">
-              <FaUserCircle size={20}></FaUserCircle>
-              Login
-            </button>
-          </Link>
-      }
       <li>
         <NavLink
           to="/faq"
@@ -81,6 +72,15 @@ const Navbar = () => {
            Support
         </NavLink>
       </li>
+      {
+        !user &&
+        <Link to="login" className="lg:hidden">
+            <button className="w-full btn btn-primary text-black text-base font-normal py-4 tracking-wider hover:bg-secondary hover:text-black">
+              <FaUserCircle size={20}></FaUserCircle>
+              Login
+            </button>
+          </Link>
+      }
 
     </>
   );
