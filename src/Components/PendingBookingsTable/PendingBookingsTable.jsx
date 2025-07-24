@@ -36,7 +36,6 @@ const PendingBookingsTable = ({ userBookings = [] }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         cancelBooking(bookingId);
-        console.log('Cancel booking ID:', bookingId);
 
         Swal.fire({
           icon: 'success',

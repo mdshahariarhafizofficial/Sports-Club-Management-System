@@ -17,7 +17,6 @@ import useUserRole from '../../../Hooks/useUserRole';
 
 const ConfirmedBookings = () => {
   const {role} = useUserRole();
-  console.log(role);
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const [selectedBooking, setSelectedBooking] = useState(null);
@@ -65,6 +64,8 @@ const ConfirmedBookings = () => {
       }
     } catch (err) {
       toast.error("Failed to submit rating");
+      console.log(err);
+      
     }
   };
 

@@ -19,7 +19,6 @@ const MyProfile = () => {
       return res.data;
     },
   });
-  console.log(userInfo[0]);
 
   // Then handle loading after all hooks
   if (isLoading || isPending ) {

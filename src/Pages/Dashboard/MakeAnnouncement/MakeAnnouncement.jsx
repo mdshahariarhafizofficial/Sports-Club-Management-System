@@ -54,8 +54,6 @@ const axiosSecure = useAxiosSecure();
 
   const onSubmit = (data) => {
     const postAt = new Date().toISOString();
-    console.log('Submitted data:', data);
-    console.log('Edit mode?', editingAnnouncement);
     mutate({...data, postAt});
   };
 

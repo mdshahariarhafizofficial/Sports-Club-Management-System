@@ -43,7 +43,7 @@ const Login = () => {
             memberSince: null,
           };          
 
-          const res = await axiosUrl.post('/users', userInfo);
+          const res = await axiosUrl.post('/users', userInfo)
           console.log('From Google SignIN --- ', res.data);
           setUser(result.user)
           navigate(`${location.state ? location.state : '/' }`)

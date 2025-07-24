@@ -91,7 +91,6 @@ const BookingModal = ({ court, closeModal, onSuccess }) => {
       price: totalPrice,
     };
 
-    console.log(bookingInfo);
     mutate(bookingInfo);
     closeModal();
   };

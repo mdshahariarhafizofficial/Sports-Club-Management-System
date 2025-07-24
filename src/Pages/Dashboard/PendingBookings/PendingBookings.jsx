@@ -20,7 +20,6 @@ const PendingBookings = () => {
     if (isPending || isLoading) {
         return <Loader></Loader>
     }
-    console.log(userBookings);
     
     return (
         <>

@@ -75,7 +75,6 @@ const CheckoutForm = () => {
 
     try {
       const finalPrice = discountedPrice ?? booking.price; // ✅ fallback to original price
-      console.log("Submitting payment for price:", finalPrice);
 
       const res = await axiosSecure.post('/create-payment-intent', {
         price: finalPrice,

@@ -37,7 +37,6 @@ import { Tooltip } from "react-tooltip";
 const DashboardLayout = () => {
   const {handleSingOut, user} = useAuth();
   const {role, roleLoading} = useUserRole();
-  console.log(role);
   
   return (
     <div>

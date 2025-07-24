@@ -19,7 +19,6 @@ const Register = () => {
       const location = useLocation();
     // Create User
     const onSubmit = data => {
-      console.log(data);
       createUser(data.email, data.password)
       .then( async(result) => {
         const user = result.user;
@@ -37,7 +36,7 @@ const Register = () => {
           
 
           const res = await axiosUrl.post('/users', userInfo);
-          console.log('From Post User --- ', res.data);
+          console.log('From Post User --- ', res);
           
 
           // Update Profile
@@ -81,7 +80,7 @@ const Register = () => {
           };          
 
           const res = await axiosUrl.post('/users', userInfo);
-          console.log('From Google SignIN --- ', res.data);
+          console.log('From Google --- ', res);
 
           setUser(result.user)
           navigate(`${location.state ? location.state : '/' }`)
@@ -104,7 +103,6 @@ const Register = () => {
       const res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_Image_Upload_Key}`, formData) 
       
       setProfilePic(res.data?.data.url);
-      console.log(res.data?.data.url);
     }
 
     return (
