@@ -16,7 +16,7 @@ const ManageCoupons = () => {
   const [newDescription, setNewDescription] = useState('');
   const [editingCoupon, setEditingCoupon] = useState(null);
 
-  const { data: coupons = [], isLoading } = useQuery({
+  const { data: coupons = [], isLoading, isPending } = useQuery({
     queryKey: ['coupons'],
     queryFn: async () => {
       const res = await axiosSecure.get('/coupons');
@@ -77,9 +77,6 @@ const ManageCoupons = () => {
       }
     });
   };
-  if (isLoading) {
-    return <Loader></Loader>
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -92,6 +89,10 @@ const ManageCoupons = () => {
       description: newDescription,
     });
   };
+
+  if (isLoading || isPending) {
+    return <Loader></Loader>
+  }
 
   return (
     <div className="md:m-6 m-3 px-6 py-10 bg-black rounded-lg shadow-lg">

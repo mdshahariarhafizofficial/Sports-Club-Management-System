@@ -7,6 +7,7 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { toast } from 'react-hot-toast';
 import { Dialog } from '@headlessui/react';
 import Swal from 'sweetalert2';
+import Loader from '../../Loading/Loader';
 
 const ManageCourts = () => {
   const axiosSecure = useAxiosSecure();
@@ -15,7 +16,7 @@ const ManageCourts = () => {
   const [editCourt, setEditCourt] = useState(null);
   const [isEditOpen, setIsEditOpen] = useState(false);
 
-  const { data: courts = [], refetch } = useQuery({
+  const { data: courts = [], refetch, isLoading, isPending } = useQuery({
     queryKey: ['courts', search],
     queryFn: async () => {
       const res = await axiosSecure.get(`/courts?search=${search}`);
@@ -84,6 +85,10 @@ const ManageCourts = () => {
     setEditCourt(null);
     refetch();
   };
+
+  if (isPending || isLoading) {
+    return <Loader></Loader>
+  }
 
   return (
     <div className="px-6 py-8">

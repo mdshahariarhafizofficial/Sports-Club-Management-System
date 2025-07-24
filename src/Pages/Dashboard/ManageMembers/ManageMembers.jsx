@@ -3,12 +3,13 @@ import { useQuery } from "@tanstack/react-query";
 import { FaSearch, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Loader from "../../Loading/Loader";
 
 const ManageMembers = () => {
   const [search, setSearch] = useState("");
   const axiosSecure = useAxiosSecure();
 
-  const { data: members = [], refetch } = useQuery({
+  const { data: members = [], refetch, isPending, isLoading } = useQuery({
     queryKey: ["members", search],
     queryFn: async () => {
       const res = await axiosSecure.get(`/members?search=${search}`);
@@ -35,6 +36,10 @@ const ManageMembers = () => {
       }
     });
   };
+
+  if (isLoading || isPending) {
+    return <Loader></Loader>
+  }
 
   return (
     <div className="p-4 md:p-6">
