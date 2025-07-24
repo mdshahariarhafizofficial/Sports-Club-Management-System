@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
@@ -12,6 +12,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import 'leaflet/dist/leaflet.css';
+import EntryLoader from './Pages/Loading/EntryLoader.jsx'
 
 // Create a client
 const queryClient = new QueryClient()
@@ -20,7 +21,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
+        <Suspense fallback={<EntryLoader></EntryLoader>}>
           <RouterProvider router={router}></RouterProvider>
+        </Suspense>
           <Toaster/>
       </AuthProvider>
     </QueryClientProvider>

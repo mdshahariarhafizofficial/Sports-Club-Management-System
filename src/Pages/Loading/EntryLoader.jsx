@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../../assets/Logo.png"; // update with your logo path
 
-const Loader = () => {
+const EntryLoader = () => {
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/90 backdrop-blur-md space-y-6">
       <img src={logo} alt="Sportiva Logo" className="h-16 animate-bounce" />
@@ -30,4 +30,4 @@ const Loader = () => {
   );
 };
 
-export default Loader;
+export default EntryLoader;

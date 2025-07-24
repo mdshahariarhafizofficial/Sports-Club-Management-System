@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import Root from "../Layouts/Root";
-import Home from "../Pages/Home/Home";
+// import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import AuthLayout from "../Layouts/AuthLayout";
 import Register from "../Pages/Register/Register";
@@ -34,6 +34,9 @@ import FAQPage from "../Pages/FAQPage/FAQPage";
 import TermsOfUse from "../Pages/TermsOfUse/TermsOfUse";
 import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
 import CookiePolicy from "../Pages/CookiePolicy/CookiePolicy";
+import { lazy } from "react";
+
+const Home =lazy( () => import('../Pages/Home/Home') ); 
 
 const router = createBrowserRouter([
 
