@@ -36,7 +36,7 @@ const PopularCourts = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {courts.map((court, index) => (
-            <Fade key={index} direction="up" triggerOnce cascade damping={0.1}>
+            <Fade key={index} direction="up" cascade damping={0.1}>
               <div
                 key={court._id}
                 className="bg-black rounded-2xl shadow hover:shadow-lg transition"

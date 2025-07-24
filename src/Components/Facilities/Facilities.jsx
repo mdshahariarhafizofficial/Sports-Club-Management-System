@@ -59,7 +59,7 @@ const Facilities = () => {
         {/* Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {facilities.map((item, index) => (
-            <Fade key={index} direction="up" triggerOnce cascade damping={0.1}>
+            <Fade key={index} direction="up" cascade damping={0.1}>
               <div className="bg-[#1a1a1a] border border-[#ffe733] rounded-2xl p-6 min-h-[200px] flex flex-col justify-between hover:shadow-lg hover:scale-105 duration-300">
                 <div>
                   <div className="flex items-center gap-4 mb-4">

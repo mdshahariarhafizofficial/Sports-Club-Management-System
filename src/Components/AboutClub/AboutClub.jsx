@@ -17,7 +17,7 @@ const AboutClub = () => {
         </div>
 
         {/* History Section */}
-        <Slide direction="left" triggerOnce duration={2500}>
+        <Slide direction="left" duration={2500}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center bg-black rounded-xl p-8 shadow-xl">
             <div>
                 <h3 className="text-2xl font-semibold mb-2 text-white">
@@ -42,7 +42,7 @@ const AboutClub = () => {
         </Slide>
 
         {/* Mission Section */}
-        <Slide direction="right" triggerOnce duration={2500}>
+        <Slide direction="right" duration={2500}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center bg-black rounded-xl p-8 shadow-xl">
             <div className="md:order-2">
                 <h3 className="text-2xl font-semibold mb-2 text-white">

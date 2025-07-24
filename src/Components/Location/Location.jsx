@@ -23,7 +23,7 @@ const Location = () => {
         {/* Grid */}
         <div className="grid md:grid-cols-[1fr_1.2fr] gap-8">
           {/* Address Box */}
-          <Slide direction="left" triggerOnce duration={2500}>
+          <Slide direction="left" duration={2500}>
             <div className="bg-[#1a1a1a] border border-[#ffe733] rounded-2xl shadow-lg p-8 h-[450px] flex flex-col justify-center">
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 flex items-center gap-3">
                 <BiSolidMapPin className="text-[#ffe733] text-3xl" />
@@ -51,7 +51,7 @@ const Location = () => {
           </Slide>
 
           {/* Map Box - wider */}
-          <Slide direction="right" triggerOnce duration={2500}>
+          <Slide direction="right" duration={2500}>
             <div className="bg-[#1a1a1a] border border-[#ffe733] rounded-2xl shadow-lg h-[450px] flex items-center justify-center text-gray-400 text-lg font-semibold">
               <MyMap />
             </div>
