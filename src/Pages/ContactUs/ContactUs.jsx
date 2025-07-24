@@ -3,7 +3,7 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
 const ContactUs = () => {
   return (
-    <section className="bg-gradient-to-b from-white to-[#fffde6] pt-10 pb-24 px-4">
+    <section className="bg-gradient-to-b from-white to-[#fffde6] py-24 px-4">
       <div className="max-w-[1500px] mx-auto">
         {/* Title Section */}
         <div className="text-center mb-16">

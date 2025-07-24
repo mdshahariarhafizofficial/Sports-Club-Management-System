@@ -31,6 +31,7 @@ import Loader from "../Pages/Loading/Loader";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import Support from "../Pages/Support/Support";
 import FAQPage from "../Pages/FAQPage/FAQPage";
+import TermsOfUse from "../Pages/TermsOfUse/TermsOfUse";
 
 const router = createBrowserRouter([
 
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
             },{
               path: 'faq',
               Component: FAQPage
+            },
+            {
+              path: 'terms-Of-use',
+              Component: TermsOfUse,
             }
         ]
     },

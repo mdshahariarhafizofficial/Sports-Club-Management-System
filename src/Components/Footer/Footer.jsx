@@ -52,30 +52,66 @@ const Footer = () => {
         <div>
           <h2 className="text-primary text-xl font-semibold mb-4">Quick Links</h2>
           <ul className='space-y-4'>
-      <li>
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            isActive
-              ? "text-primary border-b-2 rounded-none font-bold"
-              : "font-medium text-white hover:text-primary"
-          }
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/courts"
-          className={({ isActive }) =>
-            isActive
-              ? "text-primary border-b-2 rounded-none font-bold"
-              : "font-medium text-white hover:text-primary"
-          }
-        >
-          Courts
-        </NavLink>
-      </li>            
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-primary border-b-2 rounded-none font-bold"
+                    : "font-medium text-white hover:text-primary"
+                }
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/courts"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-primary border-b-2 rounded-none font-bold"
+                    : "font-medium text-white hover:text-primary"
+                }
+              >
+                Courts
+              </NavLink>
+            </li>   
+            <li>
+              <NavLink
+                to="/faq"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-primary border-b-2 rounded-none font-bold"
+                    : "font-medium text-white hover:text-primary"
+                }
+              >
+                FAQ
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/contact-us"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-primary border-b-2 rounded-none font-bold"
+                    : "font-medium text-white hover:text-primary"
+                }
+              >
+                Contact Us
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/support"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-primary border-b-2 rounded-none font-bold"
+                    : "font-medium text-white hover:text-primary"
+                }
+              >
+                Support
+              </NavLink>
+            </li>                     
           </ul>
         </div>
 
@@ -84,9 +120,9 @@ const Footer = () => {
           <h2 className="text-primary text-xl font-semibold mb-4">Resources</h2>
           <ul className="space-y-3">
             <li><a href="/dashboard" className="hover:text-primary transition">Dashboard</a></li>
-            <li><a href="/blog" className="hover:text-primary transition">Blog</a></li>
+            <li><a href="/faq" className="hover:text-primary transition">Faq</a></li>
             <li><a href="/support" className="hover:text-primary transition">Support</a></li>
-            <li><a href="/contact" className="hover:text-primary transition">Contact</a></li>
+            <li><a href="/contact-us" className="hover:text-primary transition">Contact</a></li>
           </ul>
         </div>
 
