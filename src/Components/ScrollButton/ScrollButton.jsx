@@ -26,7 +26,7 @@ const ScrollButton = () => {
             <>
             {
                 btnVisible &&
-                <button className="fixed bottom-5 right-5 z-50 p-3 rounded bg-[#000000d3] text-primary border  shadow-lg hover:bg-primary hover:text-black transition-all duration-300" onClick={goToTop}>
+                <button className="fixed bottom-20 right-4 z-50 p-2 rounded bg-[#000000d3] text-primary border  shadow-lg hover:bg-primary hover:text-black transition-all duration-300" onClick={goToTop}>
                     <LucideArrowBigUpDash size={35}/>
                 </button>
             }
