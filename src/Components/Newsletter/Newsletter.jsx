@@ -3,7 +3,7 @@ export default function Newsletter() {
     <section className="w-full bg-primary py-16">
       <div className="max-w-6xl mx-auto px-6 text-center">
         {/* Heading */}
-        <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-black mb-4">
           Stay Updated with <span className="text-white">Sportiva</span>
         </h2>
         <p className="text-black/80 mb-8 max-w-2xl mx-auto text-lg">

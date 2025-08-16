@@ -41,23 +41,27 @@ const PopularCourts = () => {
                 key={court._id}
                 className="bg-black rounded-2xl shadow hover:shadow-lg transition"
               >
-                <img
-                  src={court.image}
-                  alt={court.title}
-                  className="h-56 w-full object-cover rounded-t-2xl"
-                />
-                <div className="p-4">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-1">
-                    {court.title}
-                  </h3>
-                  <p className="text-primary text-lg mb-2">{court.location}</p>
-                  <div className="flex items-center gap-2 text-yellow-500 font-medium">
+                <div className="relative">
+                  <img
+                    src={court.image}
+                    alt={court.title}
+                    className="h-60 w-full object-cover rounded-t-2xl"
+                  />
+
+                  <div className="absolute top-0 right-0 bg-black p-2 rounded-xl flex items-center gap-2 text-yellow-500 font-medium">
                     <FaStar className="text-lg" />
                     <span>{court.averageRating?.toFixed(1)}</span>
                     <span className="text-gray-300 text-sm">
                       ({court.totalRatings})
                     </span>
                   </div>
+
+                </div>
+                <div className="p-4">
+                  <h3 className="text-xl font-semibold text-gray-800 mb-1">
+                    {court.title}
+                  </h3>
+                  <p className="text-primary text-lg mb-2">{court.location}</p>
                 </div>
               </div>
             </Fade>
