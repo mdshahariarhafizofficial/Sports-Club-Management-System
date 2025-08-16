@@ -1,6 +1,6 @@
 export default function Newsletter() {
   return (
-    <section className="w-full bg-[#ffe733] py-16">
+    <section className="w-full bg-primary py-16">
       <div className="max-w-6xl mx-auto px-6 text-center">
         {/* Heading */}
         <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
@@ -16,7 +16,7 @@ export default function Newsletter() {
           <input
             type="email"
             placeholder="Enter your email address"
-            className="w-full sm:flex-1 px-5 py-3 rounded-2xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black text-black"
+            className="w-full sm:flex-1 px-5 py-3 rounded-2xl border border-gray-700 focus:outline-none focus:ring-2 focus:ring-black text-black"
             required
           />
           <button
