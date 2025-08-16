@@ -31,4 +31,16 @@ body h1, h2, h3, h4, h5, h6{
 body button{
   cursor: pointer;
 }
+.slick-slide p,
+.slick-slide h1,
+.slick-slide h2,
+.slick-slide h3,
+.slick-slide span {
+  user-select: text !important;
+}
+
+.slick-slide img {
+  pointer-events: none; /* image drag disable রাখবে */
+}
+
 /* .slider-container{} */
