@@ -36,6 +36,7 @@ import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
 import CookiePolicy from "../Pages/CookiePolicy/CookiePolicy";
 import { lazy } from "react";
 import OverviewPage from "../Pages/Dashboard/OverviewPage/OverviewPage";
+import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
 
 const Home =lazy( () => import('../Pages/Home/Home') ); 
 
@@ -103,11 +104,11 @@ const router = createBrowserRouter([
   children: [
     {
       index: true,
-      element: <PrivateRoutes><DashboardHome></DashboardHome></PrivateRoutes>
+      element: <PrivateRoutes><OverviewPage></OverviewPage></PrivateRoutes>
     },
     {
-      path: 'overview',
-      element: <PrivateRoutes><OverviewPage></OverviewPage></PrivateRoutes>
+      path: 'my-profile',
+      element: <PrivateRoutes><MyProfile></MyProfile></PrivateRoutes>
     },
     {
       path: 'pending-bookings',

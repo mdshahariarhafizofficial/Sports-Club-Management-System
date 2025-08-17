@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { ImProfile } from "react-icons/im";
 
-export default function ProfilePage() {
+export default function MyProfile() {
   // Dummy user data (later replace with API call)
   const [user] = useState({
     image: "https://i.pravatar.cc/150?img=32",

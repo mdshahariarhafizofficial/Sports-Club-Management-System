@@ -140,7 +140,7 @@ const DashboardLayout = () => {
 <>
   <li className="mr-4">
     <NavLink
-      to="/dashboard/overview"
+      to="/dashboard"
       end
       className={({ isActive }) =>
         isActive ? "font-bold bg-primary" : "text-secondary font-medium"
@@ -157,8 +157,7 @@ const DashboardLayout = () => {
     <>
   <li className="mr-4">
     <NavLink
-      to="/dashboard"
-      end
+      to="/dashboard/my-profile"
       className={({ isActive }) =>
         isActive ? "font-bold bg-primary" : "text-secondary font-medium"
       }
@@ -203,8 +202,7 @@ const DashboardLayout = () => {
     <>
   <li className="mr-4">
     <NavLink
-      to="/dashboard"
-      end
+      to="/dashboard/my-profile"
       className={({ isActive }) =>
         isActive ? "font-bold bg-primary" : "text-secondary font-medium"
       }
@@ -295,7 +293,7 @@ const DashboardLayout = () => {
   {
     !roleLoading && role === 'admin' &&
     <>
-  <li className="mr-4">
+  {/* <li className="mr-4">
     <NavLink
       to="/dashboard"
       end
@@ -305,6 +303,17 @@ const DashboardLayout = () => {
     >
       <FaUserShield className="inline-block mr-2 text-lg" />
       Admin Profile
+    </NavLink>
+  </li> */}
+    <li className="mr-4">
+    <NavLink
+      to="/dashboard/my-profile"
+      className={({ isActive }) =>
+        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
+      }
+    >
+      <HiOutlineUserCircle className="inline-block mr-2 text-lg" />
+      My Profile
     </NavLink>
   </li>
 
