@@ -70,8 +70,6 @@ export default function MyProfile() {
 
   const onSubmit = (data) => {
     updateMutation.mutate(data);
-    console.log(data);
-    
   };
 
   if (isLoading) return <div>Loading...</div>;

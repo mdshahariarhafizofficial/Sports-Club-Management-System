@@ -98,8 +98,6 @@ const { data: paymentsLength, isLoading: paymentsLengthLoading } = useQuery({
     return data.totalPaymentsLength;
   },
 });
-
-  console.log("payment = ", paymentsCount);
   
 
   // Total Courts count
@@ -129,10 +127,6 @@ const { data: paymentsLength, isLoading: paymentsLengthLoading } = useQuery({
     },
   });
 
-  const myBookingCount = bookingsCount;
-  console.log("Admin =  ",myBookingCount);
-  console.log("user =  ",userBookingsCount);
-  
 
   // Dummy data (replace with API later)
   const bookingData = [
