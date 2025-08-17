@@ -315,6 +315,48 @@ const { data: paymentsLength, isLoading: paymentsLengthLoading } = useQuery({
           </CardContent>
         </Card>
       </div>
+      {/* ✅ Extra Dynamic Section (No main code changed) */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Recent Activities */}
+        <Card>
+          <CardContent>
+            <h2 className="text-lg font-extrabold mb-4">Recent Activities</h2>
+            <ul className="space-y-3 text-gray-700">
+              <li className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                {user?.email} booked a court
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-yellow-400"></span>
+                New user registered
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                Payment received successfully
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-red-500"></span>
+                Court booking cancelled
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
+
+        {/* Progress Bar */}
+        <Card>
+          <CardContent>
+            <h2 className="text-lg font-extrabold mb-4">Booking Completion Rate</h2>
+            <div className="w-full bg-gray-200 rounded-full h-4">
+              <div
+                className="bg-green-500 h-4 rounded-full text-xs text-white flex items-center justify-center"
+                style={{ width: `${Math.min(((confirmedCounts || 0) / ((bookingsCount || 1))) * 100, 100)}%` }}
+              >
+                {Math.round(((confirmedCounts || 0) / ((bookingsCount || 1))) * 100)}%
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>      
     </div>
   );
 }
