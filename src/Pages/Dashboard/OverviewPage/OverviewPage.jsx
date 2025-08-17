@@ -18,11 +18,99 @@ import { useQuery } from "@tanstack/react-query";
 import Loader from "../../Loading/Loader";
 import useAxios from "../../../Hooks/useAxios";
 import useAuth from "../../../Hooks/useAuth";
+import { PiCourtBasketballBold } from "react-icons/pi";
+
 
 export default function OverviewPage() {
   const {role, roleLoading} = useUserRole();
   const axios = useAxios(); 
   const {user} = useAuth();
+
+  // Total users count
+  const { data: totalUsersCount, isLoading: usersCountLoading } = useQuery({
+    queryKey: ["totalUsersCount"],
+    queryFn: async () => {
+      const { data } = await axios.get("/api/users/count");
+      return data.totalUsers;
+    },
+  });
+
+// Total Pending Bookings count
+const { data: pendingCounts, isLoading: pendingCountLoading } = useQuery({
+  queryKey: ["totalPendingCount", role, user.email],
+  queryFn: async () => {
+    const params = { role };
+    if (role !== "admin") params.email = user.email;
+
+    const { data } = await axios.get("/api/bookings/pending/total", { params });
+    return data.totalPending;
+  },
+});
+
+// Total Approved Bookings count
+const { data: approvedCounts, isLoading: approvedCountLoading } = useQuery({
+  queryKey: ["totalApprovedCount", role, user.email],
+  queryFn: async () => {
+    const params = { role };
+    if (role !== "admin") params.email = user.email;
+
+    const { data } = await axios.get("/api/bookings/approved/total", { params });
+    return data.totalApproved;
+  },
+});
+
+
+// Total Confirmed Bookings count
+const { data: confirmedCounts, isLoading: confirmedCountLoading } = useQuery({
+  queryKey: ["totalConfirmedCount", role, user.email],
+  queryFn: async () => {
+    const params = { role };
+    if (role !== "admin") params.email = user.email;
+
+    const { data } = await axios.get("/api/bookings/confirmed/total", { params });
+    return data.totalConfirmed;
+  },
+});
+
+
+// Total Payment Length
+const { data: paymentsCount, isLoading: paymentsCountLoading } = useQuery({
+  queryKey: ["totalPaymentsCount", role, user.email],
+  queryFn: async () => {
+    const params = { role };
+    if (role !== "admin") params.email = user.email;
+
+    const { data } = await axios.get("/api/payments/total", { params });
+    return data.totalPayments;
+  },
+});
+
+
+
+// Total Payment Length
+const { data: paymentsLength, isLoading: paymentsLengthLoading } = useQuery({
+  queryKey: ["totalPaymentsLength", role, user.email],
+  queryFn: async () => {
+    const params = { role };
+    if (role !== "admin") params.email = user.email;
+
+    const { data } = await axios.get("/api/payments/length", { params });
+    return data.totalPaymentsLength;
+  },
+});
+
+  console.log("payment = ", paymentsCount);
+  
+
+  // Total Courts count
+  const { data: courtsCount, isLoading: courtsCountLoading } = useQuery({
+    queryKey: ["totalCourtsCount"],
+    queryFn: async () => {
+      const { data } = await axios.get("/courtsCount");
+      return data.totalCourtsCount;
+    },
+  });
+
   // Total Booking For Admin
   const { data: bookingsCount, isLoading } = useQuery({
     queryKey: ["totalBookingCount"],
@@ -57,12 +145,13 @@ export default function OverviewPage() {
   ];
 
   const pieData = [
-    { name: "Paid", value: 400 },
-    { name: "Pending", value: 200 },
-    { name: "Cancelled", value: 100 },
+    { name: "Paid", value: paymentsLength },
+    { name: "Pending", value: pendingCounts },
+    { name: "Approved", value: approvedCounts },
+    { name: "Confirmed", value: confirmedCounts },
   ];
 
-  const COLORS = ["#ffe733", "#000000", "#8884d8"];
+  const COLORS = ["#ffe733", "#000000", "green", "red"];
 
   // ✅ Local Card component (Tailwind only)
   const Card = ({ children }) => (
@@ -75,7 +164,7 @@ export default function OverviewPage() {
     <div className={`p-6 ${className}`}>{children}</div>
   );
 
-  if (isLoading || loadingUserBookingCount) {
+  if (isLoading || loadingUserBookingCount || usersCountLoading || courtsCountLoading || paymentsCountLoading || pendingCountLoading || approvedCountLoading || confirmedCountLoading || paymentsLengthLoading) {
     return <Loader></Loader>
   }
 
@@ -94,7 +183,7 @@ export default function OverviewPage() {
             <div>
               <p className="text-sm text-gray-500">Total Users</p>
               <h2 className="text-2xl font-bold">
-                <CountUp end={1250}></CountUp>
+                <CountUp end={totalUsersCount || 0}></CountUp>
             </h2>
             </div>
           </CardContent>
@@ -119,12 +208,26 @@ export default function OverviewPage() {
               <p className="text-sm text-gray-500">Total Payments</p>
               <h2 className="text-2xl font-bold">
                 $ 
-                <CountUp end={12400}></CountUp>
+                <CountUp end={paymentsCount}></CountUp>
               </h2>
             </div>
           </CardContent>
         </Card>
 
+        {
+          !roleLoading && role === 'admin' ?
+        <Card>
+          <CardContent className="flex items-center gap-4">
+            <PiCourtBasketballBold className="w-10 h-20 text-yellow-400" />
+            <div>
+              <p className="text-sm text-gray-500">Total Courts</p>
+              <h2 className="text-2xl font-bold">
+                <CountUp end={courtsCount}></CountUp>                
+              </h2>
+            </div>
+          </CardContent>
+        </Card>        
+        :
         <Card>
           <CardContent className="flex items-center gap-4">
             <Star className="w-10 h-20 text-yellow-400" />
@@ -134,6 +237,8 @@ export default function OverviewPage() {
             </div>
           </CardContent>
         </Card>
+        }
+
       </div>
 
       {/* Charts Section */}
