@@ -7,7 +7,8 @@ import {
   MdCampaign,
   MdOutlineAssignmentTurnedIn,
   MdLogout,
-  MdSpaceDashboard
+  MdSpaceDashboard,
+  MdContentPasteSearch
 } from "react-icons/md";
 import {
   HiOutlineUserCircle,
@@ -145,7 +146,7 @@ const DashboardLayout = () => {
         isActive ? "font-bold bg-primary" : "text-secondary font-medium"
       }
     >
-      <FaHome className="inline-block mr-2 text-lg" />
+      <MdContentPasteSearch className="inline-block mr-2 text-lg" />
       Overview
     </NavLink>
   </li>

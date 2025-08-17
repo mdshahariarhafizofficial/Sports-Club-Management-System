@@ -1,4 +1,6 @@
 import { Users, Calendar, CreditCard, Star } from "lucide-react";
+import CountUp from "react-countup";
+import { MdContentPasteSearch } from "react-icons/md";
 import {
   BarChart,
   Bar,
@@ -45,43 +47,52 @@ export default function OverviewPage() {
   return (
     <div className="p-6 space-y-6">
       {/* Page Title */}
-      <h1 className="text-2xl font-bold">📊 Dashboard Overview</h1>
+      <h1 className="text-2xl flex items-center gap-2 font-extrabold">
+        <MdContentPasteSearch size={30}></MdContentPasteSearch>
+        Dashboard Overview</h1>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card>
           <CardContent className="flex items-center gap-4">
-            <Users className="w-10 h-10 text-yellow-400" />
+            <Users className="w-10 h-20 text-yellow-400" />
             <div>
               <p className="text-sm text-gray-500">Total Users</p>
-              <h2 className="text-2xl font-bold">1,250</h2>
+              <h2 className="text-2xl font-bold">
+                <CountUp end={1250}></CountUp>
+            </h2>
             </div>
           </CardContent>
         </Card>
 
         <Card>
           <CardContent className="flex items-center gap-4">
-            <Calendar className="w-10 h-10 text-yellow-400" />
+            <Calendar className="w-10 h-20 text-yellow-400" />
             <div>
               <p className="text-sm text-gray-500">Total Bookings</p>
-              <h2 className="text-2xl font-bold">530</h2>
+              <h2 className="text-2xl font-bold">
+                <CountUp end={550}></CountUp>
+              </h2>
             </div>
           </CardContent>
         </Card>
 
         <Card>
           <CardContent className="flex items-center gap-4">
-            <CreditCard className="w-10 h-10 text-yellow-400" />
+            <CreditCard className="w-10 h-20 text-yellow-400" />
             <div>
               <p className="text-sm text-gray-500">Total Payments</p>
-              <h2 className="text-2xl font-bold">$12,400</h2>
+              <h2 className="text-2xl font-bold">
+                $ 
+                <CountUp end={12400}></CountUp>
+              </h2>
             </div>
           </CardContent>
         </Card>
 
         <Card>
           <CardContent className="flex items-center gap-4">
-            <Star className="w-10 h-10 text-yellow-400" />
+            <Star className="w-10 h-20 text-yellow-400" />
             <div>
               <p className="text-sm text-gray-500">Ratings</p>
               <h2 className="text-2xl font-bold">4.8/5</h2>
