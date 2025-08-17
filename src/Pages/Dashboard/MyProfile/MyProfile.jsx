@@ -8,7 +8,7 @@ const ProfessionalProfilePage = () => {
             <div className="flex flex-col md:flex-row gap-6">
                 {/* Left Column: Profile Picture */}
                 <div className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center h-fit md:w-1/3 transition-transform duration-300 transform hover:scale-[1.02]">
-                    <h2 className="text-xl font-bold text-gray-800 mb-4 border-b pb-2 w-full text-center">Profile Picture</h2>
+                    <h2 className="text-xl font-bold text-gray-800 mb-4 pb-2 w-full text-center">Profile Picture</h2>
                     <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-blue-500 shadow-xl relative group">
                         <img
                             src=""
