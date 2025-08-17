@@ -5,7 +5,7 @@ import { auth } from '../Firebase/firebase.config';
 import { useNavigate } from 'react-router';
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://sports-club-management-system-serve-swart.vercel.app',
 })
 const useAxiosSecure = () => {
     const {user, handleSingOut} = useAuth();

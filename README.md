@@ -3,7 +3,7 @@
 **Sportiva** is a modern and responsive web application designed to streamline sports club management. Built using the MERN Stack, it provides a full-featured system for booking courts, managing users, tracking payments, and handling administrative tasks efficiently.
 
 🔗 **Live Site:** [https://sportiva-scms.netlify.app/](https://sportiva-scms.netlify.app/)  
-🖥 **Server API:** [http://localhost:5000/](http://localhost:5000/)
+🖥 **Server API:** [https://sports-club-management-system-serve-swart.vercel.app/](https://sports-club-management-system-serve-swart.vercel.app/)
 
 🔧 **Server Repo:** [https://github.com/mdshahariarhafizofficial/Sports-Club-Management-System-Server-side](https://github.com/mdshahariarhafizofficial/Sports-Club-Management-System-Server-side)
 

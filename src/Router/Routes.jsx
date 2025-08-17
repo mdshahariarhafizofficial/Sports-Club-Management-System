@@ -54,7 +54,7 @@ const router = createBrowserRouter([
             {
               path: 'courts',
               Component: CourtsPage,
-              loader: () => fetch('http://localhost:5000/courtsCount'),
+              loader: () => fetch('https://sports-club-management-system-serve-swart.vercel.app/courtsCount'),
               hydrateFallbackElement: <Loader></Loader>,
             },
             {

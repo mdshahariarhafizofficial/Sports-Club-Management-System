@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://sports-club-management-system-serve-swart.vercel.app',
 })
 const useAxios = () => {
     return axiosInstance;
