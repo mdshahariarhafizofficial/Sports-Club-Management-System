@@ -139,14 +139,14 @@ const DashboardLayout = () => {
 <>
   <li className="mr-4">
     <NavLink
-      to="/"
+      to="/dashboard/overview"
       end
       className={({ isActive }) =>
         isActive ? "font-bold bg-primary" : "text-secondary font-medium"
       }
     >
       <FaHome className="inline-block mr-2 text-lg" />
-      Back To Home
+      Overview
     </NavLink>
   </li>
 
@@ -405,6 +405,18 @@ const DashboardLayout = () => {
   }
 
 {/* --------------------------------- */}
+  <li className="mr-4">
+    <NavLink
+      to="/"
+      end
+      className={({ isActive }) =>
+        isActive ? "font-bold bg-primary" : "text-secondary font-medium"
+      }
+    >
+      <FaHome className="inline-block mr-2 text-lg" />
+      Back To Home
+    </NavLink>
+  </li>
 
 </>
 

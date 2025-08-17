@@ -35,6 +35,7 @@ import TermsOfUse from "../Pages/TermsOfUse/TermsOfUse";
 import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
 import CookiePolicy from "../Pages/CookiePolicy/CookiePolicy";
 import { lazy } from "react";
+import OverviewPage from "../Pages/Dashboard/OverviewPage/OverviewPage";
 
 const Home =lazy( () => import('../Pages/Home/Home') ); 
 
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
     {
       index: true,
       element: <PrivateRoutes><DashboardHome></DashboardHome></PrivateRoutes>
+    },
+    {
+      path: 'overview',
+      element: <PrivateRoutes><OverviewPage></OverviewPage></PrivateRoutes>
     },
     {
       path: 'pending-bookings',
