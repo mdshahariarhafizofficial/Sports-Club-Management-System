@@ -142,16 +142,22 @@ const { data: paymentsLength, isLoading: paymentsLengthLoading } = useQuery({
     { month: "Apr", bookings: 40 },
     { month: "May", bookings: 70 },
     { month: "Jun", bookings: 55 },
+    { month: "Jul", bookings: 55 },
+    { month: "Aug", bookings: 55 },
+    // { month: "Sep", bookings: 55 },
+    // { month: "Oct", bookings: 55 },
+    // { month: "Nov", bookings: 55 },
+    // { month: "Dec", bookings: 55 },
   ];
 
   const pieData = [
-    { name: "Paid", value: paymentsLength },
-    { name: "Pending", value: pendingCounts },
-    { name: "Approved", value: approvedCounts },
-    { name: "Confirmed", value: confirmedCounts },
+    { name: "Paid", value: paymentsLength || 0 },
+    { name: "Pending", value: pendingCounts || 0 },
+    { name: "Approved", value: approvedCounts || 0 },
+    { name: "Confirmed", value: confirmedCounts || 0 },
   ];
 
-  const COLORS = ["#ffe733", "#000000", "green", "red"];
+  const COLORS = ["#ffe733", "blue", "green", "red"];
 
   // ✅ Local Card component (Tailwind only)
   const Card = ({ children }) => (
@@ -246,7 +252,7 @@ const { data: paymentsLength, isLoading: paymentsLengthLoading } = useQuery({
         {/* Bar Chart */}
         <Card>
           <CardContent>
-            <h2 className="text-lg font-semibold mb-4">Monthly Bookings</h2>
+            <h2 className="text-lg font-extrabold mb-4">Monthly Bookings</h2>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={bookingData}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -266,7 +272,7 @@ const { data: paymentsLength, isLoading: paymentsLengthLoading } = useQuery({
         {/* Pie Chart */}
         <Card>
           <CardContent>
-            <h2 className="text-lg font-semibold mb-4">Booking Status</h2>
+            <h2 className="text-lg font-extrabold mb-4">Booking Status</h2>
             <ResponsiveContainer width="100%" height={300}>
               <PieChart>
                 <Pie
@@ -288,6 +294,24 @@ const { data: paymentsLength, isLoading: paymentsLengthLoading } = useQuery({
                 </Pie>
               </PieChart>
             </ResponsiveContainer>
+              <div className="flex flex-col md:flex-row gap-10 pt-10 justify-center">
+                  <div className="flex items-center gap-1">
+                    <div className="bg-blue-600 w-5 h-5 rounded"></div>
+                    <p>Pending</p>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="bg-primary w-5 h-5 rounded"></div>
+                    <p>Paid</p>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="bg-red-500 w-5 h-5 rounded"></div>
+                    <p>Confirmed</p>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="bg-green-500 w-5 h-5 rounded"></div>
+                    <p>Approved</p>
+                  </div>
+              </div>
           </CardContent>
         </Card>
       </div>
