@@ -7,7 +7,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 
 export default function MyProfile() {
-  const { user } = useAuth();
+  const { user, updateUser, setLoading } = useAuth();
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
@@ -46,6 +46,20 @@ export default function MyProfile() {
       return data;
     },
     onSuccess: (data) => {
+      
+      // Update FB User Profile
+      const updateUserProfile = {
+        displayName: data.name,
+        photoURL: data.image,
+      }
+      updateUser(updateUserProfile)
+          .then(() => {
+           setLoading(false);              
+          })
+          .catch( (error) => {
+            console.log(error);
+          } )
+               
       toast.success("Profile updated successfully!");
       queryClient.setQueryData(["currentUser", user.email], data);
     },
@@ -56,6 +70,8 @@ export default function MyProfile() {
 
   const onSubmit = (data) => {
     updateMutation.mutate(data);
+    console.log(data);
+    
   };
 
   if (isLoading) return <div>Loading...</div>;
