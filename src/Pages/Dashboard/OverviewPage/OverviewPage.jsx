@@ -13,8 +13,39 @@ import {
   Pie,
   Cell,
 } from "recharts";
+import useUserRole from "../../../Hooks/useUserRole";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../../Loading/Loader";
+import useAxios from "../../../Hooks/useAxios";
+import useAuth from "../../../Hooks/useAuth";
 
 export default function OverviewPage() {
+  const {role, roleLoading} = useUserRole();
+  const axios = useAxios(); 
+  const {user} = useAuth();
+  // Total Booking For Admin
+  const { data: bookingsCount, isLoading } = useQuery({
+    queryKey: ["totalBookingCount"],
+    queryFn: async () => {
+      const { data } = await axios.get("/api/bookings/count");
+      return data.totalBookings;
+    },
+  });
+
+  // Total Booking For user/member
+  const { data: userBookingsCount, isLoading: loadingUserBookingCount } = useQuery({
+    queryKey: ["userBookingCount"],
+    queryFn: async () => {
+      const { data } = await axios.get(`/api/bookings/count/${user?.email}`);
+      return data.totalBookings;
+    },
+  });
+
+  const myBookingCount = bookingsCount;
+  console.log("Admin =  ",myBookingCount);
+  console.log("user =  ",userBookingsCount);
+  
+
   // Dummy data (replace with API later)
   const bookingData = [
     { month: "Jan", bookings: 30 },
@@ -44,6 +75,10 @@ export default function OverviewPage() {
     <div className={`p-6 ${className}`}>{children}</div>
   );
 
+  if (isLoading || loadingUserBookingCount) {
+    return <Loader></Loader>
+  }
+
   return (
     <div className="p-6 space-y-6">
       {/* Page Title */}
@@ -71,7 +106,7 @@ export default function OverviewPage() {
             <div>
               <p className="text-sm text-gray-500">Total Bookings</p>
               <h2 className="text-2xl font-bold">
-                <CountUp end={550}></CountUp>
+                <CountUp end={`${!roleLoading && role === 'admin' ? bookingsCount : userBookingsCount}` || 0}></CountUp>
               </h2>
             </div>
           </CardContent>
